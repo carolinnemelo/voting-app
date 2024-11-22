@@ -1,3 +1,4 @@
-export async function createElectionAction() {
-  return "Action works"
+export async function createElectionAction(formData: FormData) {
+  const electionName = formData.get("electionName");
+  console.log({electionName})
 }
