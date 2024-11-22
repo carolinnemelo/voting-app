@@ -7,16 +7,11 @@ export function createService() {
     async getAll() {
       return await db.select().from(electionsTable);
     },
-    async createElection(election: Election) {
-      console.log(election.electionName);
+    async createElection(electionName: string) {
       await db.insert(electionsTable).values({
-        election_name: election.electionName,
+        election_name: electionName,
       });
     },
   };
 }
 
-type Election = {
-  electionName: string;
-  endsAt?: number;
-};
