@@ -1,36 +1,48 @@
 # Voting App
 ## Planning
 ### Features: 
+* **Add Representative**
+  * Minimum of 1 representative
+  * Input name
+  * Input email
+<br>
+
 * **Create Election**
-  * Minimum 2 choices
-  * Input Name
-* **Create Representative**
-  * Minimum 1 Representative
-  * Input Name
-  * Input Email
-* **Create Elector and Vote**
+  * Input election name
+  * Minimum of 2 choices
+<br>
+
+* **Create Public Vote and Vote**
   * Input Name 
-  * Select Choice Intention 
-  * Vote on Representative 
+  * List of representatives
+  * Vote on representative 
+  * List of ongoing elections
+  * Indicate preferences in ongoing elections 
+<br>
+
 * **Representative Voting**
-  * Display amount of Electors 
-  * Display Electors Intentions and Percentages
-  * Vote on choice
+  * Number of public votes 
+  * Public votes' preferences percentage per election
+  * List of ongoing elections
+  * Vote on a choice
+<br>
+
 * **Count Votes**
   * Calculate winner
-  * Calculate Electors Intentions percentages
-  * Compute Representative's votes
-  * Calculate Agreement Rate
+  * Calculate public votes preferences percentages
+  * Compute representative's votes
+  * Calculate agreement rate
+<br>
 
 
 ## Tables
 
 * Election
-Id | Created | Started | Ended 
+Id | Created | Ended 
 <br>
 
-* Electors
-Id | Name | Intension | Vote (Representative_Id) 
+* Public Votes
+Id | Name | Preference | Vote (Representative_Id) 
 <br>
 
 * Representatives
