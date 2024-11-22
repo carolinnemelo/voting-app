@@ -7,7 +7,7 @@ export default function Election() {
   return (
     <>
     <h1>Create new Election</h1>
-    <pre>{JSON.stringify(electionList)}</pre>
+    <pre>{JSON.stringify(electionList, null, 2)}</pre>
       <form action={createElectionAction}>
         <input type="text" name="electionName" />
         <button type="submit">Create Election</button>
