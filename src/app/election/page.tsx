@@ -1,3 +1,5 @@
+import { createElectionAction } from "@/features/election/actions";
+
 export default function Election() {
   return (
     <form action={createElectionAction}>
