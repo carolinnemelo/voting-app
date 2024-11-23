@@ -14,6 +14,6 @@ export async function createPublicVoteAndVoteAction(formData: FormData) {
   });
 }
 
-export function voteOnChoice(formData: FormData) {
+export async function voteOnChoice(formData: FormData) {
   console.log(formData)
 }

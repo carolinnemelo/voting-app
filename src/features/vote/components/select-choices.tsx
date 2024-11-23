@@ -2,7 +2,7 @@ import { ChoicesTableRows } from "@/db";
 import { voteOnChoice } from "..";
 
 
-export async function SelectChoices(choicesTableRows: ChoicesTableRows) {
+export async function SelectChoices({choicesTableRows}: {choicesTableRows: ChoicesTableRows}) {
 const choiceList = await generateChoiceList(choicesTableRows)
   return (
     <form action={voteOnChoice}>
