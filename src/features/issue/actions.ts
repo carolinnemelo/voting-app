@@ -21,3 +21,9 @@ export async function createRepresentativeAction(formData: FormData) {
   await issueFeature.service.addRepresentative(name, email);
 }
 
+
+export async function selectIssueAction(formData: FormData) {
+  const issueId = Number(formData.get("issueSelect"));
+  console.log({issueId})
+
+}
