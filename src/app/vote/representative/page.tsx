@@ -50,20 +50,22 @@ export default function Representative() {
     <>
       <h1>Representative Vote Page</h1>
       <select onChange={handleIssueChange}>
+        <option value="">Choose an issue</option>
         {mockData.map((issue) => (
           <option value={issue.id} key={issue.id}>
             {issue.issueName}
           </option>
         ))}
       </select>
-
-      <select>
-        {selectedChoices.map((choice) => (
-          <option value={choice.id} key={choice.id}>
-            {choice.choiceName}
-          </option>
-        ))}
-      </select>
+      <form action="">
+        <select>
+          {selectedChoices.map((choice) => (
+            <option value={choice.id} key={choice.id}>
+              {choice.choiceName}
+            </option>
+          ))}
+        </select>
+      </form>
     </>
   );
 }
