@@ -1,10 +1,10 @@
-import { issueFeature, selectIssueAction } from "..";
+import { issueFeature,  } from "..";
 
 export async function SelectIssue() {
   const issueList = await generateIssueList();
 
   return (
-    <form action={selectIssueAction}>
+    <form >
       <select name="issueSelect" id="issueSelect">
         <option value="">Please choose an option</option>
         {issueList}
