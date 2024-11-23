@@ -14,8 +14,8 @@ export async function createPublicVoteAndVoteAction(formData: FormData) {
   });
 }
 
-export async function voteOnIssueAction(formData: FormData, choicesTableRows: []) {
+export async function voteOnIssueAction(formData: FormData) {
   const issueId = Number(formData.get("issueSelect"));
-  console.log({choicesTableRows, issueId})
+  console.log({issueId})
 
 }
