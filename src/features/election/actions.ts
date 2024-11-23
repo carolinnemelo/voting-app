@@ -9,7 +9,7 @@ export async function createElectionAction(formData: FormData) {
   if (!electionName) {
     return;
   }
-  await electionFeature.service.createElection({electionName, choice1, choice2});
+  await electionFeature.service.createIssue({ electionName, choice1, choice2 });
 }
 
 export async function createRepresentativeAction(formData: FormData) {
