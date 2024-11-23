@@ -1,5 +1,4 @@
-import { electionFeature } from "@/features/election/instance";
-import { createPublicVoteAndVoteAction } from "@/features/public-vote/actions";
+import { electionFeature, createPublicVoteAndVoteAction } from "@/features";
 
 export default async function Home() {
   const representativeList = await generateRepresentativeList()

@@ -1,5 +1,4 @@
-import { createElectionAction } from "@/features/election/actions";
-import { electionFeature } from "@/features/election/instance";
+import { electionFeature, createElectionAction } from "@/features";
 
 const electionList = await electionFeature.service.getAllElectionsAndChoices()
 export default function Election() {

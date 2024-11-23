@@ -1,7 +1,4 @@
-import { createRepresentativeAction } from "@/features/election/actions";
-import { electionFeature } from "@/features/election/instance";
-
-
+import { electionFeature, createRepresentativeAction } from "@/features";
 
 export default async function NewRepresentative() {
   const representativeList =
