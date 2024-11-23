@@ -30,11 +30,12 @@ const mockData = [
 
 export default function Representative() {
   const [selectedChoices, setSelectedChoices] = useState([""]);
-  function handleIssueChange(event) {
+  function handleIssueChange(event: { target: { value: string; }; }) {
     const issueId = Number(event.target.value);
     const issue = mockData.find((issue) => issue.id === issueId);
     if (!issue) {
       setSelectedChoices([]);
+      return;
     }
     const issueChoices = issue.choices.map((choice) => choice.choiceName);
     setSelectedChoices(issueChoices);
