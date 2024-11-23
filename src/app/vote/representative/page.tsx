@@ -6,7 +6,7 @@ export default async function Representative() {
   return (
     <>
       <h1>Representative Vote Page</h1>
-      <form action="">
+      <form action={voteOnIssueAction}>
         <select name="issueSelect" id="issueSelect">
           <option value="">Please choose an option</option>
           {issueList}

@@ -15,3 +15,6 @@ export async function createPublicVoteAndVoteAction(formData: FormData) {
     representativeId,
   });
 }
+
+export async function voteOnIssueAction(formData: FormData) {
+}
