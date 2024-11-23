@@ -29,7 +29,8 @@ export function createService() {
         .select({
           issueId: issuesTable.id,
           issueName: issuesTable.issueName,
-          choices: choicesTable.issueId,
+          choiceId: choicesTable.id,
+          choiceName: choicesTable.choiceName,
         })
         .from(issuesTable)
         .leftJoin(choicesTable, eq(choicesTable.issueId, issuesTable.id))
