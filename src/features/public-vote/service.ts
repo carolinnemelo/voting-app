@@ -1,4 +1,4 @@
-import { db, InsertPublicVote, publicVotesTable } from "@/db";
+import { db, publicVotesTable } from "@/db";
 
 export function createService() {
   return {
