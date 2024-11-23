@@ -17,4 +17,6 @@ export async function createPublicVoteAndVoteAction(formData: FormData) {
 }
 
 export async function voteOnIssueAction(formData: FormData) {
+  return;
 }
+
