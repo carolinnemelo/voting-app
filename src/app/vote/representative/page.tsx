@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { EventHandler, useState } from "react";
 
 const mockData = [
   {
@@ -29,14 +29,14 @@ const mockData = [
 ];
 
 export default function Representative() {
-  const [selectedChoices, setSelectedChoices] = useState([]);
+  const [selectedChoices, setSelectedChoices] = useState([""]);
   function handleIssueChange(event) {
     const issueId = Number(event.target.value);
     const issue = mockData.find((issue) => issue.id === issueId);
     if (!issue) {
-      setSelectedChoices([])
+      setSelectedChoices([]);
     }
-    const issueChoices = (issue.choices).map((choice) => choice.choiceName)
+    const issueChoices = issue.choices.map((choice) => choice.choiceName);
     setSelectedChoices(issueChoices);
   }
   return (
@@ -50,7 +50,11 @@ export default function Representative() {
         ))}
       </select>
 
-      <ul>{selectedChoices.map((choice, index) => <li key={index}> {choice}</li>)}</ul>
+      <ul>
+        {selectedChoices.map((choice, index) => (
+          <li key={index}> {choice}</li>
+        ))}
+      </ul>
     </>
   );
 }
