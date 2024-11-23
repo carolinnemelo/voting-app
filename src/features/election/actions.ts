@@ -4,6 +4,8 @@ import { electionFeature } from "./instance";
 
 export async function createElectionAction(formData: FormData) {
   const electionName = formData.get("electionName") as string;
+  const choice1 = formData.get("choice1") as string;
+  const choice2 = formData.get("choice1") as string;
   if (!electionName) {
     return;
   }
