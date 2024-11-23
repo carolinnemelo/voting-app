@@ -1,5 +1,6 @@
 "use client";
 
+import { voteOnChoice } from "@/features";
 import { useState } from "react";
 
 const mockData = [
@@ -49,17 +50,17 @@ export default function Representative() {
   return (
     <>
       <h1>Representative Vote Page</h1>
-      <select onChange={handleIssueChange}>
-        <option value="">Choose an issue</option>
-        {mockData.map((issue) => (
-          <option value={issue.id} key={issue.id}>
-            {issue.issueName}
-          </option>
-        ))}
-      </select>
-      <form action="">
-        <select>
-        <option value="">Choose an issue</option>
+      <form action={voteOnChoice}>
+        <select name="selectedIssue" onChange={handleIssueChange}>
+          <option value="">Choose an issue</option>
+          {mockData.map((issue) => (
+            <option value={issue.id} key={issue.id}>
+              {issue.issueName}
+            </option>
+          ))}
+        </select>
+        <select name="selectedChoice">
+          <option value="">Select your choice</option>
           {selectedChoices.map((choice) => (
             <option value={choice.id} key={choice.id}>
               {choice.choiceName}
