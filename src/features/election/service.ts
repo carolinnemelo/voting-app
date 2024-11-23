@@ -5,11 +5,19 @@ import {
   representativesTable,
 } from "@/db/schema";
 import { InsertElection } from "@/db/types";
+import { eq } from "drizzle-orm";
 
 export function createService() {
   return {
-    async getAll() {
-      return await db.select().from(electionsTable);
+    async getAllElectionsAndChoices() {
+      return await db.select({
+        electionId: electionsTable.id,
+        electionName: electionsTable.electionName,
+        choices: choicesTable.choiceName
+      })
+        .from(electionsTable)
+        .leftJoin(choicesTable, eq(choicesTable.electionId, electionsTable.id))
+        .orderBy(electionsTable.id);
     },
     async createElection({ electionName, choice1, choice2 }: InsertElection) {
       const row = await db.insert(electionsTable).values({
