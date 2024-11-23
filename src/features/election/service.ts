@@ -9,7 +9,7 @@ export function createService() {
     },
     async createElection(electionName: string) {
       await db.insert(electionsTable).values({
-        election_name: electionName,
+        electionName: electionName,
       });
     },
   };
