@@ -1,12 +1,11 @@
-import { electionsTable, publicVotesTable } from "./schema";
+import { IssuesTable, publicVotesTable } from "./schema";
 
-export type SelectElection = typeof electionsTable.$inferSelect;
-
+export type SelectElection = typeof IssuesTable.$inferSelect;
 
 export type InsertElection = {
-  electionName: string,
-  choice1: string,
-  choice2: string,
-}
+  electionName: string;
+  choice1: string;
+  choice2: string;
+};
 
 export type InsertPublicVote = typeof publicVotesTable.$inferInsert;

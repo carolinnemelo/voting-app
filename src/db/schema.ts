@@ -1,8 +1,8 @@
 import { integer, pgTable, varchar, timestamp } from "drizzle-orm/pg-core";
 
-export const electionsTable = pgTable("elections", {
+export const IssuesTable = pgTable("issues", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  electionName: varchar().notNull(),
+  issueName: varchar().notNull(),
   createdAt: timestamp().defaultNow().notNull(),
   endTime: timestamp(),
 });
@@ -10,7 +10,7 @@ export const electionsTable = pgTable("elections", {
 export const choicesTable = pgTable("choices", {
   id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   choiceName: varchar("choiceName").notNull(),
-  electionId: integer("foreign_electionId").references(()=> electionsTable.id),
+  issueId: integer("issueId").references(() => IssuesTable.id),
 });
 export const representativesTable = pgTable("representatives", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),

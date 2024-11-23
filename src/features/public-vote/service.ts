@@ -6,10 +6,13 @@ export function createService() {
       return await db.select().from(publicVotesTable);
     },
 
-    async createPublicVoteAndVote({ publicVoteName, myRepresentativeId}: InsertPublicVote) {
+    async createPublicVoteAndVote({
+      voterName,
+      representativeId,
+    }: InsertPublicVote) {
       await db.insert(publicVotesTable).values({
-        publicVoteName: publicVoteName,
-        myRepresentative: myRepresentativeId,
+        voterName,
+        representativeId,
       });
     },
   };
