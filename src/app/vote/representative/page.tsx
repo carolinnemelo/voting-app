@@ -30,15 +30,20 @@ const mockData = [
 ];
 
 export default function Representative() {
-  const [selectedChoices, setSelectedChoices] = useState([""]);
+  const [selectedChoices, setSelectedChoices] = useState<Choice[]>([]);
   function handleIssueChange(event: { target: { value: string } }) {
     const issueId = Number(event.target.value);
     const issue = mockData.find((issue) => issue.id === issueId);
+
     if (!issue) {
       setSelectedChoices([]);
       return;
     }
-    const issueChoices = issue.choices.map((choice) => choice.choiceName);
+
+    const issueChoices = issue.choices.map((choice) => {
+      return { choiceName: choice.choiceName, id: choice.id };
+    });
+    console.log(issueChoices);
     setSelectedChoices(issueChoices);
   }
   return (
@@ -52,11 +57,18 @@ export default function Representative() {
         ))}
       </select>
 
-      <ul>
-        {selectedChoices.map((choice, index) => (
-          <li key={index}> {choice}</li>
+      <select>
+        {selectedChoices.map((choice) => (
+          <option value={choice.id} key={choice.id}>
+            {choice.choiceName}
+          </option>
         ))}
-      </ul>
+      </select>
     </>
   );
 }
+
+type Choice = {
+  id: number;
+  choiceName: string;
+};
