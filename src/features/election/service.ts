@@ -1,5 +1,5 @@
 import { db } from "@/db/db"
-import { electionsTable } from "@/db/schema"
+import { electionsTable, representativesTable } from "@/db/schema"
 
 
 export function createService() {
@@ -10,6 +10,15 @@ export function createService() {
     async createElection(electionName: string) {
       await db.insert(electionsTable).values({
         electionName: electionName,
+      });
+    },
+      async getAllRepresentatives() {
+      return await db.select().from(representativesTable);
+    },
+    async addRepresentative(name: string, email: string) {
+      await db.insert(representativesTable).values({
+        representativeName: name,
+        email,
       });
     },
   };
