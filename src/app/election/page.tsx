@@ -1,7 +1,7 @@
 import { createElectionAction } from "@/features/election/actions";
 import { electionFeature } from "@/features/election/instance";
 
-const electionList = await electionFeature.service.getAll()
+const electionList = await electionFeature.service.getAllElectionsAndChoices()
 export default function Election() {
 
   return (
