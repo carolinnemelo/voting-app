@@ -5,9 +5,12 @@ export function createService() {
     async getAll() {
       return await db.select().from(publicVotesTable);
     },
-    async createPublicVoteAndVote({
-      publicVoteName,
-      representativeId,
-    }: InsertPublicVote) {},
+
+    async createPublicVoteAndVote({ publicVoteName, myRepresentativeId}: InsertPublicVote) {
+      await db.insert(publicVotesTable).values({
+        publicVoteName: publicVoteName,
+        myRepresentative: myRepresentativeId,
+      });
+    },
   };
 }
