@@ -35,9 +35,10 @@ async function generateChoiceList() {
   const choiceList = choicesTableRows.map((choice) => {
     return (
       <option key={choice.id} value={choice.id}>
-        {choice.}
+        {choice.choiceName}
       </option>
     );
   });
+  
   return choiceList;
 }

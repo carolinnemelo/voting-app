@@ -10,9 +10,11 @@ import { eq } from "drizzle-orm";
 export function createService() {
   return {
     async getAll() {
-      return await db
-      .select()
-      .from(issuesTable)
+      return await db.select().from(issuesTable);
+    },
+
+    async getAllChoices() {
+      return await db.select().from(choicesTable);
     },
 
     async getAllIssuesAndChoices() {
