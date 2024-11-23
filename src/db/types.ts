@@ -3,7 +3,7 @@ import { IssuesTable, publicVotesTable } from "./schema";
 export type SelectElection = typeof IssuesTable.$inferSelect;
 
 export type InsertElection = {
-  electionName: string;
+  issueName: string;
   choice1: string;
   choice2: string;
 };
