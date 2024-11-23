@@ -7,7 +7,7 @@ export async function createPublicVoteAndVoteAction(formData: FormData) {
     return;
   }
   const publicVoteName = formData.get("publicVoteName") as string;
-  const representativeId = formData.get("representativeSelect") as string;
-  await publicVoteFeature.service.createPublicVoteAndVote({publicVoteName, representativeId});
+  const vote = Number(formData.get("representativeSelect")) as number;
+  await publicVoteFeature.service.createPublicVoteAndVote({publicVoteName, vote});
 
 }
