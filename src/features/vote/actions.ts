@@ -13,3 +13,7 @@ export async function createPublicVoteAndVoteAction(formData: FormData) {
     representativeId,
   });
 }
+
+export function voteOnChoice(formData: FormData) {
+  console.log(formData)
+}
