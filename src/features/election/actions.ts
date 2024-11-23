@@ -20,3 +20,4 @@ export async function createRepresentativeAction(formData: FormData) {
   }
   await electionFeature.service.addRepresentative(name, email);
 }
+
