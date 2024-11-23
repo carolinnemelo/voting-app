@@ -1,5 +1,6 @@
 "use client";
-import { EventHandler, useState } from "react";
+
+import { useState } from "react";
 
 const mockData = [
   {
@@ -30,7 +31,7 @@ const mockData = [
 
 export default function Representative() {
   const [selectedChoices, setSelectedChoices] = useState([""]);
-  function handleIssueChange(event: { target: { value: string; }; }) {
+  function handleIssueChange(event: { target: { value: string } }) {
     const issueId = Number(event.target.value);
     const issue = mockData.find((issue) => issue.id === issueId);
     if (!issue) {
