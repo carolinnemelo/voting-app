@@ -7,6 +7,11 @@ export const electionsTable = pgTable("elections", {
   endTime: timestamp(),
 });
 
+export const choicesTable = pgTable("choices", {
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
+  choiceName: varchar("choiceName").notNull(),
+  electionId: integer("foreign_electionId").references(()=> electionsTable.id),
+});
 export const representativesTable = pgTable("representatives", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   representativeName: varchar().notNull(),
@@ -15,16 +20,10 @@ export const representativesTable = pgTable("representatives", {
   createdAt: timestamp().defaultNow().notNull(),
 });
 
-export const publicVotesTable = pgTable("representatives", {
+export const publicVotesTable = pgTable("publicVotes", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   publicVoteName: varchar().notNull(),
-  vote: integer().references(()=> representativesTable.id).notNull(),
-  preference: integer().references(()=> choicesTable.id),
-  election: integer().references(()=> representativesTable.id),
+  vote: integer("foreign_representativeId").references(()=> representativesTable.id),
+  preference: integer("foreign_choiceId").references(()=> choicesTable.id),
 });
 
-export const choicesTable = pgTable("elections", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  choiceName: varchar().notNull(),
-  election: integer().references(()=> electionsTable.id),
-});
