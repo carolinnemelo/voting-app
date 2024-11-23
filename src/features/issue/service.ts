@@ -17,6 +17,10 @@ export function createService() {
       return await db.select().from(choicesTable);
     },
 
+    async getChoicesById(id: number) {
+      return await db.select().from(choicesTable).where(eq(choicesTable.issueId, id));
+    },
+
     async getAllIssuesAndChoices() {
       return await db
         .select({
