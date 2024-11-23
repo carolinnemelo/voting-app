@@ -12,7 +12,7 @@ export async function createElectionAction(formData: FormData) {
 
 export async function createRepresentativeAction(formData: FormData) {
   const name = formData.get("representativeName") as string;
-  const email = formData.get("representativeName") as string;
+  const email = formData.get("email") as string;
   if (!name || !email) {
     return;
   }
