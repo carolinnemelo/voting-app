@@ -27,15 +27,21 @@ const mockData = [
 ];
 
 
-export default async function Representative() {
+export default function Representative(event) {
+  const [selectedChoices, setSelectedChoices] = useState([]);
+function handleIssueChange() {
+  const issueId = Number(event.target.value)
+}
   return (
     <>
       <h1>Representative Vote Page</h1>
-      <ul>
+      <select onChange={handleIssueChange}>
         {mockData.map((issue) => (
-          <li key={issue.id}>{issue.issueName}</li>
+          <option value={issue.id} key={issue.id}>{issue.issueName}</option>
         ))}
-      </ul>
+      </select>
     </>
   );
-}
+} 
+
+
