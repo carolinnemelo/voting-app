@@ -1,11 +1,12 @@
 import { electionFeature } from "@/features/election/instance";
+import { createPublicVoteAndVoteAction } from "@/features/public-vote/actions";
 
 export default async function Home() {
   const representativeList = await generateRepresentativeList()
   return (
     <>
       <h1>Public Vote Form</h1>
-      <form action="">
+      <form action={createPublicVoteAndVoteAction}>
         <label htmlFor="publicVoteName">Public Vote Name</label>
         <input type="text" name="publicVoteName" id="publicVoteName" />
         <label htmlFor="representativeSelect">Choose Representative</label>
@@ -13,6 +14,7 @@ export default async function Home() {
           <option value="">Please choose an option</option>
           {representativeList}
         </select>
+        <button type="submit">Vote</button>
       </form>
     </>
   );
@@ -25,3 +27,4 @@ async function generateRepresentativeList() {
   })
   return representativeList;
 }
+
