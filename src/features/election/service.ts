@@ -43,6 +43,7 @@ export function createService() {
     async getAllRepresentatives() {
       return await db.select().from(representativesTable);
     },
+    
     async addRepresentative(name: string, email: string) {
       await db.insert(representativesTable).values({
         representativeName: name,
