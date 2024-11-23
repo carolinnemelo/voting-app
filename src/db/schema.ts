@@ -22,8 +22,8 @@ export const representativesTable = pgTable("representatives", {
 
 export const publicVotesTable = pgTable("publicVotes", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  publicVoteName: varchar().notNull(),
-  myRepresentative: integer("foreign_representativeId").references(()=> representativesTable.id),
-  preference: integer("foreign_choiceId").references(()=> choicesTable.id),
+  voterName: varchar().notNull(),
+  representativeId: integer("representativeId").references(()=> representativesTable.id),
+  preferenceId: integer("preferenceId").references(()=> choicesTable.id),
 });
 
