@@ -4,12 +4,14 @@ export const electionsTable = pgTable("elections", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   electionName: varchar().notNull(),
   createdAt: timestamp().defaultNow().notNull(),
-  endsAt: timestamp(),
+  endTime: timestamp(),
 });
 
 export const representativesTable = pgTable("representatives", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  election_name: varchar().notNull(),
-  created_at: timestamp().defaultNow().notNull(),
-  endsAt: timestamp(),
+  representativeName: varchar().notNull(),
+  email: varchar().notNull(),
+  vote: integer().references(()=> choicesTable.id),
+  createdAt: timestamp().defaultNow().notNull(),
 });
+
