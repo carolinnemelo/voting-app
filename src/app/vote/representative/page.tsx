@@ -1,3 +1,5 @@
+"use client";
+import { useState } from "react";
 
 const mockData = [
   {
@@ -26,22 +28,29 @@ const mockData = [
   },
 ];
 
-
-export default function Representative(event) {
+export default function Representative() {
   const [selectedChoices, setSelectedChoices] = useState([]);
-function handleIssueChange() {
-  const issueId = Number(event.target.value)
-}
+  function handleIssueChange(event) {
+    const issueId = Number(event.target.value);
+    const issue = mockData.find((issue) => issue.id === issueId);
+    if (!issue) {
+      setSelectedChoices([])
+    }
+    const issueChoices = (issue.choices).map((choice) => choice.choiceName)
+    setSelectedChoices(issueChoices);
+  }
   return (
     <>
       <h1>Representative Vote Page</h1>
       <select onChange={handleIssueChange}>
         {mockData.map((issue) => (
-          <option value={issue.id} key={issue.id}>{issue.issueName}</option>
+          <option value={issue.id} key={issue.id}>
+            {issue.issueName}
+          </option>
         ))}
       </select>
+
+      <ul>{selectedChoices.map((choice, index) => <li key={index}> {choice}</li>)}</ul>
     </>
   );
-} 
-
-
+}
