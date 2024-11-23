@@ -65,6 +65,7 @@ export default function Representative() {
             </option>
           ))}
         </select>
+        <button type="submit">Vote</button>
       </form>
     </>
   );
