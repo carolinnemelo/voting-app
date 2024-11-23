@@ -59,6 +59,7 @@ export default function Representative() {
       </select>
       <form action="">
         <select>
+        <option value="">Choose an issue</option>
           {selectedChoices.map((choice) => (
             <option value={choice.id} key={choice.id}>
               {choice.choiceName}
