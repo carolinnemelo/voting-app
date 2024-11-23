@@ -9,3 +9,9 @@ export type InsertIssue = {
 };
 
 export type InsertPublicVote = typeof publicVotesTable.$inferInsert;
+
+export type ChoicesTableRows =  {
+  id: number;
+  choiceName: string;
+  issueId: number | null;
+}[]

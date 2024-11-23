@@ -1,6 +1,7 @@
+import { ChoicesTableRows } from "@/db";
 
 
-export async function SelectChoices(choicesTableRows) {
+export async function SelectChoices(choicesTableRows: ChoicesTableRows) {
 const choiceList = await generateChoiceList(choicesTableRows)
   return (
     <form action={voteOnChoice}>
@@ -13,11 +14,11 @@ const choiceList = await generateChoiceList(choicesTableRows)
   );
 }
 
-async function generateChoiceList(choicesTableRows) {
+async function generateChoiceList(choicesTableRows: ChoicesTableRows) {
   return choicesTableRows.map((choice) => {
     return (
       <option key={choice.id} value={choice.id}>
-        {choice.issueName}
+        {choice.choiceName}
       </option>
     );
   });
