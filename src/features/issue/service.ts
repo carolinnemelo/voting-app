@@ -1,15 +1,19 @@
 import { db } from "@/db/db";
-import { choicesTable, issuesTable, representativesTable } from "@/db/schema";
-import { InsertElection } from "@/db/types";
+import {
+  choicesTable,
+  issuesTable,
+  representativesTable,
+  InsertIssue,
+} from "@/db";
 import { eq } from "drizzle-orm";
 
 export function createService() {
   return {
-    async getAllElectionsAndChoices() {
+    async getAllIssuesAndChoices() {
       return await db
         .select({
-          electionId: issuesTable.id,
-          electionName: issuesTable.issueName,
+          issueId: issuesTable.id,
+          issueName: issuesTable.issueName,
           choices: choicesTable.issueId,
         })
         .from(issuesTable)
@@ -17,7 +21,7 @@ export function createService() {
         .orderBy(issuesTable.id);
     },
 
-    async createIssue({ issueName, choice1, choice2 }: InsertElection) {
+    async createIssue({ issueName, choice1, choice2 }: InsertIssue) {
       const row = await db
         .insert(issuesTable)
         .values({

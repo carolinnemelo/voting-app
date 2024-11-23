@@ -1,8 +1,7 @@
-import { electionFeature, createRepresentativeAction } from "@/features";
+import { issueFeature, createRepresentativeAction } from "@/features";
 
 export default async function NewRepresentative() {
-  const representativeList =
-    await electionFeature.service.getAllRepresentatives();
+  const representativeList = await issueFeature.service.getAllRepresentatives();
 
   return (
     <>
@@ -12,7 +11,7 @@ export default async function NewRepresentative() {
       <form action={createRepresentativeAction}>
         <input type="text" name="representativeName" />
         <input type="email" name="email" />
-        <button type="submit">Create Election</button>
+        <button type="submit">Create Representative</button>
       </form>
     </>
   );

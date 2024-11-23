@@ -1,2 +1,2 @@
-export * from "./election"
+export * from "./issue"
 export * from "./public-vote"

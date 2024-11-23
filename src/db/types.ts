@@ -1,8 +1,8 @@
 import { issuesTable, publicVotesTable } from "./schema";
 
-export type SelectElection = typeof issuesTable.$inferSelect;
+export type SelectIssue = typeof issuesTable.$inferSelect;
 
-export type InsertElection = {
+export type InsertIssue = {
   issueName: string;
   choice1: string;
   choice2: string;

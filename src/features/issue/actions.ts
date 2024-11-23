@@ -1,15 +1,15 @@
 "use server";
 
-import { electionFeature } from "./instance";
+import { issueFeature } from "./instance";
 
-export async function createElectionAction(formData: FormData) {
-  const electionName = formData.get("electionName") as string;
+export async function createIssueAction(formData: FormData) {
+  const issueName = formData.get("issueName") as string;
   const choice1 = formData.get("choice1") as string;
   const choice2 = formData.get("choice2") as string;
-  if (!electionName) {
+  if (!issueName) {
     return;
   }
-  await electionFeature.service.createIssue({ electionName, choice1, choice2 });
+  await issueFeature.service.createIssue({ issueName, choice1, choice2 });
 }
 
 export async function createRepresentativeAction(formData: FormData) {
@@ -18,6 +18,6 @@ export async function createRepresentativeAction(formData: FormData) {
   if (!name || !email) {
     return;
   }
-  await electionFeature.service.addRepresentative(name, email);
+  await issueFeature.service.addRepresentative(name, email);
 }
 

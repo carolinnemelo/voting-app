@@ -1,5 +1,5 @@
 import {
-  electionFeature,
+  issueFeature,
   createPublicVoteAndVoteAction,
   publicVoteFeature,
 } from "@/features";
@@ -27,7 +27,7 @@ export default async function Home() {
 
 async function generateRepresentativeList() {
   const representativesTableRows =
-    await electionFeature.service.getAllRepresentatives();
+    await issueFeature.service.getAllRepresentatives();
   const representativeList = representativesTableRows.map((representative) => {
     return (
       <option key={representative.id} value={representative.id}>
