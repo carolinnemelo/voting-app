@@ -4,13 +4,14 @@ import {
   electionsTable,
   representativesTable,
 } from "@/db/schema";
+import { InsertElection } from "@/db/types";
 
 export function createService() {
   return {
     async getAll() {
       return await db.select().from(electionsTable);
     },
-    async createElection({ electionName, choice1, choice2 }) {
+    async createElection({ electionName, choice1, choice2 }: InsertElection) {
       const row = await db.insert(electionsTable).values({
         electionName: electionName,
       }).returning({id:electionsTable.id});
