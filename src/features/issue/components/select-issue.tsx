@@ -1,20 +1,18 @@
 import { issueFeature } from "../instance";
 
-export async function SelectIssue() {
-  const issuesOptions = await generateOptions("issues")
+export function SelectIssue({
+  issuesWithChoicesList,
+}: {
+  issuesWithChoicesList: Issue[];
+}) {
   return (
     <div>
       <h1>Respira meu bem</h1>
+      <select name="" id="">
+        {issuesWithChoicesList.map((issue) => {
+          return <option value={issue.issueId}>{issue.issueName}</option>;
+        })}
+      </select>
     </div>
   );
-}
-
-
-async function generateOptions(label: string) {
-  if(label === "issues") {
-    const issuesList = await issueFeature.service.getAllIssuesAndChoices()
-  }
-  if(label === "choices") {
-
-  }
 }

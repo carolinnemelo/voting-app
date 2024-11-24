@@ -1,11 +1,24 @@
 "use client";
 
-import { fetchChoicesByIssue, fetchIssuesList, voteOnChoice } from "@/features";
+import { fetchChoicesByIssue, issueFeature, voteOnChoice } from "@/features";
 import { useEffect, useState } from "react";
 
 
+export async function fetchIssuesList() {
+  return await issueFeature.service.getAll();
+}
+
+
 export default function Representative() {
+  const [issuesListWithChoices, setIssuesListWithChoices] = useState<Issue[]>(
+    []
+  );
   const [selectedChoices, setSelectedChoices] = useState<Choice[]>([]);
+
+  useEffect(() => {
+    const list = await  fetchIssuesList();
+    setIssuesListWithChoices(list)
+  }, []);
 
   async function handleIssueChange(event: { target: { value: string } }) {
     const issueId = Number(event.target.value);
