@@ -11,13 +11,13 @@ export function SelectIssue({
   return (
     <div>
       <h1>Respira meu bem</h1>
-      <pre>{JSON.stringify(issuesWithChoicesList, null, 2)}</pre>
+      {/* <pre>{JSON.stringify(issuesWithChoicesList, null, 2)}</pre> */}
 
-      <select name="" id="">
+      {/* <select name="" id="">
         {issuesWithChoicesList.map((issue) => {
           return <option value={issue.issueId}>{issue.issueName}</option>;
         })}
-      </select>
+      </select> */}
     </div>
   );
 }
