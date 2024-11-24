@@ -21,10 +21,11 @@ export default async function VoteRepresentative() {
       choiceName: currentIssue.choiceName,
     });
     return accumulatorObject;
-  });
+  }, [])
+
+  console.log({groupedData})
   return (
     <>
-      <pre>{JSON.stringify(groupedData, null, 2)}</pre>
       <h1>Respira, tu vais conseguir</h1>
       <SelectIssue issuesWithChoicesList={groupedData} />
     </>
