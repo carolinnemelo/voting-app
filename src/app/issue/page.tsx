@@ -11,8 +11,8 @@ export default async function Issue() {
     <>
       <Main>
         <ReusableCard cardTitle="Create new Issue">
-          <FormCreateIssue />
           <ReusableAccordion label="All Issues" list={issuesNamesList} />
+          <FormCreateIssue />
         </ReusableCard>
       </Main>
     </>
