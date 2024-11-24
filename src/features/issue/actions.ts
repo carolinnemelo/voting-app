@@ -1,5 +1,6 @@
 "use server";
 
+import { choicesTable } from "@/db";
 import { issueFeature } from "./instance";
 
 export async function createIssueAction(formData: FormData) {
@@ -19,4 +20,8 @@ export async function createRepresentativeAction(formData: FormData) {
     return;
   }
   await issueFeature.service.addRepresentative(name, email);
+}
+
+export async function fetchChoicesByIssue(issueId: number) {
+  return await issueFeature.service.getChoicesByIssueId(issueId)
 }

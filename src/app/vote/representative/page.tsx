@@ -32,6 +32,7 @@ const mockData = [
 
 export default function Representative() {
   const [selectedChoices, setSelectedChoices] = useState<Choice[]>([]);
+  
   function handleIssueChange(event: { target: { value: string } }) {
     const issueId = Number(event.target.value);
     const issue = mockData.find((issue) => issue.id === issueId);
