@@ -1,7 +1,8 @@
 "use client";
-import { Button, Input } from "@/components";
+import { Button, Input} from "@/components";
 import { createIssueAction, State } from "../actions";
 import { useActionState } from "react";
+import { ErrorMessage } from ".";
 
 export function Form() {
   const initialState: State = { message: null, errors: {} };
@@ -10,8 +11,10 @@ export function Form() {
   return (
     <form action={formAction}>
       <Input typeOfInput="text" label="Issue name" nameOfInput="issueName" />
-      {state?.errors.issueName && <ErrorMessage errors={state.errors.issueName} />}
-    
+      {state?.errors.issueName && (
+        <ErrorMessage errors={state.errors.issueName} />
+      )}
+
       <Input typeOfInput="text" label="Choice 1" nameOfInput="choice1" />
       {state?.errors.choice1 && <ErrorMessage errors={state.errors.choice1} />}
 
@@ -24,16 +27,3 @@ export function Form() {
   );
 }
 
-type Props = {
-  errors: string[];
-};
-
-export function ErrorMessage({ errors }: Props) {
-  return (errors.map((error) => {
-    return (
-      <p className="mt-2 text-sm text-red-500" key={error}>
-        {error}
-      </p>
-    );
-  }))
-}
