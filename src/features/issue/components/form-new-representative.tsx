@@ -5,7 +5,7 @@ import { createRepresentativeAction } from "../actions";
 import { Button, Input } from "@/components";
 
 export function FormNewRepresentative() {
-  const initialState: State = { message: null, errors: {} };
+  const initialState = { message: null, errors: {} };
   const [state, formAction] = useActionState(createRepresentativeAction, initialState);
 
   return (

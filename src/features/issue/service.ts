@@ -5,6 +5,7 @@ import {
   representativesTable,
   InsertIssue,
   Issue,
+  RepresentativeInsert,
 } from "@/db";
 import { eq } from "drizzle-orm";
 
@@ -87,9 +88,9 @@ export function createService() {
       return await db.select().from(representativesTable);
     },
 
-    async addRepresentative(name: string, email: string) {
+    async addRepresentative({representativeName, email}: RepresentativeInsert) {
       await db.insert(representativesTable).values({
-        representativeName: name,
+        representativeName: representativeName,
         email,
       });
     },

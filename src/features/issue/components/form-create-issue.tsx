@@ -9,7 +9,6 @@ export function FormCreateIssue() {
   const [state, formAction] = useActionState(createIssueAction, initialState);
 
   return (
-    
     <form action={formAction}>
       <Input typeOfInput="text" label="Issue name" nameOfInput="issueName" />
       {state?.errors.issueName && (
@@ -23,7 +22,6 @@ export function FormCreateIssue() {
       {state?.errors.choice2 && <ErrorMessage errors={state.errors.choice2} />}
 
       <Button label="Create issue" type="submit" />
-      <div id="customer-error" aria-live="polite" aria-atomic="true"></div>
     </form>
   );
 }

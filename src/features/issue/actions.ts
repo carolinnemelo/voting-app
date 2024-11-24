@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { issueFeature } from "./instance";
 import { z } from "zod";
-import { redirect } from "next/navigation";
+import { RepresentativeInsert } from "@/db";
 
 const issueSchema = z.object({
   issueName: z.string().min(1, "Name can not be empty"),
@@ -20,7 +20,7 @@ export type State = {
   message?: string | null;
 };
 
-export async function createIssueAction(formData: FormData) {
+export async function createIssueAction(prevState: State, formData: FormData) {
   const validatedFields = issueSchema.safeParse({
     issueName: formData.get("issueName") as string,
     choice1: formData.get("choice1") as string,
@@ -36,14 +36,30 @@ export async function createIssueAction(formData: FormData) {
   revalidatePath("/issue");
 }
 
+const representativeSchema = z.object({
+  representativeName: z.string().min(1, "Name can not be empty"),
+  email: z.string().email("Insert Valid Email"),
+});
 
-export async function createRepresentativeAction(formData: FormData) {
-  const name = formData.get("representativeName") as string;
-  const email = formData.get("email") as string;
-  if (!name || !email) {
-    return;
+
+export async function createRepresentativeAction(
+  prevState: RepresentativeInsert,
+  formData: FormData
+) {
+
+  const validatedFields = representativeSchema.safeParse({
+    name: formData.get("representativeName"),
+    email: formData.get("email"),
+})
+
+
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: "Missing Fields",
+    }
   }
-  await issueFeature.service.addRepresentative(name, email);
+  await issueFeature.service.addRepresentative({...validatedFields.data});
 }
 
 export async function fetchChoicesByIssue(issueId: number) {
