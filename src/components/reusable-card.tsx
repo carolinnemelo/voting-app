@@ -1,14 +1,17 @@
 import { ReactNode } from "react";
-import { Card } from "./shad-components/card";
+import { Card, CardTitle } from "./shad-components/card";
 
 type Props = {
+  cardTitle: string,
   children: ReactNode;
 };
 
-export function ReusableCard({ children }: Props) {
+export function ReusableCard({ cardTitle, children }: Props) {
   return (
     <>
-      <Card className="p-4">{children}</Card>
+      <Card className="mt-10 p-4">
+        <CardTitle>{cardTitle}</CardTitle>
+        {children}</Card>
     </>
   );
 }

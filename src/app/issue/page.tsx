@@ -5,12 +5,10 @@ import { issueFeature, createIssueAction } from "@/features";
 export default async function Issue() {
   const issueList = await issueFeature.service.getAllIssuesAndChoices();
   const issuesNamesList = issueList.map(issue => issue.issueName);
-  console.log({issueList})
   return (
     <>
       <Main>
-        <ReusableCard>
-          <h1>Create new Issue</h1>
+        <ReusableCard cardTitle="Create new Issue">
           <ReusableAccordion label="All Issues" list={issuesNamesList}/>
           <form action={createIssueAction}>
             <Input typeOfInput="text" label="Issue name" nameOfInput="issueName" />
