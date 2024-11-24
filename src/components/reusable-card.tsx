@@ -8,7 +8,7 @@ type Props = {
 export function ReusableCard({ children }: Props) {
   return (
     <>
-      <Card>{children}</Card>
+      <Card className="p-4">{children}</Card>
     </>
   );
 }
