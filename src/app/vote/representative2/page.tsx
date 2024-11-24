@@ -22,7 +22,6 @@ export default async function VoteRepresentative() {
     });
     return accumulatorObject;
   });
-  console.log(groupedData)
   return (
     <>
       <pre>{JSON.stringify(groupedData, null, 2)}</pre>
@@ -36,7 +35,7 @@ type Choice = {
   choiceName: string;
 };
 
-type IssueWithChoices = {
+export type IssueWithChoices = {
   issueId: number;
   issueName: string;
   choiceId: number | null;

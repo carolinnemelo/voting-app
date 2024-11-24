@@ -1,10 +1,12 @@
+import { IssueWithChoices } from "@/app/vote/representative2/page";
 import { issueFeature } from "../instance";
 
 export function SelectIssue({
   issuesWithChoicesList,
 }: {
-  issuesWithChoicesList:any;
+  issuesWithChoicesList:IssueWithChoices[];
 }) {
+
   return (
     <div>
       <h1>Respira meu bem</h1>
