@@ -4,28 +4,26 @@ import { revalidatePath } from "next/cache";
 import { issueFeature } from "./instance";
 import { z } from "zod";
 
-
 const issueSchema = z.object({
   issueName: z.string().min(1, "Name can not be empty"),
   choice1: z.string().min(1, "Can not be empty"),
-  choice2: z.string().min(1, "Can not be empty")
+  choice2: z.string().min(1, "Can not be empty"),
 });
 
 export async function createIssueAction(formData: FormData) {
-
-const data = {
-  issueName: formData.get("issueName") as string,
-  choice1: formData.get("choice1") as string,
-  choice2: formData.get("choice2") as string,
-};
-const parsedData = issueSchema.safeParse(data)
-if(!parsedData.success) {
-  console.log(parsedData.error)
-  return
-}
+  const data = {
+    issueName: formData.get("issueName") as string,
+    choice1: formData.get("choice1") as string,
+    choice2: formData.get("choice2") as string,
+  };
+  const parsedData = issueSchema.safeParse(data);
+  if (!parsedData.success) {
+    console.log(parsedData.error);
+    return;
+  }
 
   await issueFeature.service.createIssue({ ...parsedData.data });
-  revalidatePath("/issue")
+  revalidatePath("/issue");
 }
 
 export async function createRepresentativeAction(formData: FormData) {
@@ -38,9 +36,9 @@ export async function createRepresentativeAction(formData: FormData) {
 }
 
 export async function fetchChoicesByIssue(issueId: number) {
-  return await issueFeature.service.getChoicesByIssueId(issueId)
+  return await issueFeature.service.getChoicesByIssueId(issueId);
 }
 
 export async function fetchIssuesList() {
-  const fetchIssuesList =  await issueFeature.service.getAll();
+  const fetchIssuesList = await issueFeature.service.getAll();
 }
