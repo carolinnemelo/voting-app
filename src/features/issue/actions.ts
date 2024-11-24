@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { issueFeature } from "./instance";
 import { z } from "zod";
+import { redirect } from "next/navigation";
 
 const issueSchema = z.object({
   issueName: z.string().min(1, "Name can not be empty"),
@@ -10,20 +11,30 @@ const issueSchema = z.object({
   choice2: z.string().min(1, "Can not be empty"),
 });
 
-export async function createIssueAction(formData: FormData) {
-  const data = {
+export type State = {
+  errors: {
+    issueName?: string[] | undefined;
+    choice1?: string[] | undefined;
+    choice2?: string[] | undefined;
+  };
+  message?: string | null;
+};
+
+export async function createIssueAction(prevState: State, formData: FormData) {
+  const validatedFields = issueSchema.safeParse({
     issueName: formData.get("issueName") as string,
     choice1: formData.get("choice1") as string,
     choice2: formData.get("choice2") as string,
-  };
-  const parsedData = issueSchema.safeParse(data);
-  if (!parsedData.success) {
-    console.log(parsedData.error);
-    return;
+  });
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: "Missing Fields. Failed to Create Invoice.",
+    };
   }
-
-  await issueFeature.service.createIssue({ ...parsedData.data });
+  await issueFeature.service.createIssue({ ...validatedFields.data });
   revalidatePath("/issue");
+  redirect("/issue");
 }
 
 export async function createRepresentativeAction(formData: FormData) {
