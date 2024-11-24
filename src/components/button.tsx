@@ -6,5 +6,5 @@ type Props = {
 };
 
 export function Button({ label, type }: Props) {
-  return <ButtonShad type={type}>{label}</ButtonShad>;
+  return <ButtonShad className="mt-3" type={type}>{label}</ButtonShad>;
 }
