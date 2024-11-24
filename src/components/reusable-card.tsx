@@ -10,7 +10,7 @@ export function ReusableCard({ cardTitle, children }: Props) {
   return (
     <>
       <Card className="my-auto p-4 flex-grow">
-        <CardTitle>{cardTitle}</CardTitle>
+        <CardTitle className="mb-3">{cardTitle}</CardTitle>
         {children}</Card>
     </>
   );

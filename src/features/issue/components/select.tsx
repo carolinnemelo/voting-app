@@ -26,7 +26,7 @@ export function Select({
   );
 }
 
-async function generateRepresentativeList(representativesTableRows: RepresentativesTableRows[]) {
+function generateRepresentativeList(representativesTableRows: RepresentativesTableRows[]) {
   const representativeList = representativesTableRows.map((representative) => {
     return (
       <option key={representative.id} value={representative.id}>

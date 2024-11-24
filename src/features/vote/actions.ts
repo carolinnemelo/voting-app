@@ -1,19 +1,30 @@
 "use server";
 
+import { InsertPublicVote } from "@/db";
 import { publicVoteFeature } from "./instance";
+import { z } from "zod";
 
-export async function createPublicVoteAndVoteAction(formData: FormData) {
-  
+const publicVoteSchema = z.object({
+  voterName: z.string().min(1, "Name can not be empty"),
+  representativeId: z.number(),
+  preferenceId: z.number(),
+});
 
+export async function createPublicVoteAndVoteAction(prevState: InsertPublicVote,formData: FormData) {
+  const validatedFields = publicVoteSchema.safeParse({
+    voterName: formData.get("publicVoteName"),
+    representativeId: formData.get("representativeSelect"),
+  });
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: "Missing Fields",
+    };
+  }
   if (!formData) {
     return;
   }
-  const voterName = formData.get("publicVoteName") as string;
-  const representativeId = Number(formData.get("representativeSelect"));
-  await publicVoteFeature.service.createPublicVoteAndVote({
-    voterName,
-    representativeId,
-  });
+  await publicVoteFeature.service.createPublicVoteAndVote({...validatedFields.data});
 }
 
 export async function voteOnChoice(formData: FormData) {

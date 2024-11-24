@@ -15,7 +15,7 @@ export function ReusableAccordion({ label, list }: Props) {
     return <AccordionContent key={index}>{e}</AccordionContent>;
   });
   return (
-    <Accordion className="my-3" type="single" collapsible>
+    <Accordion className="mb-3" type="single" collapsible>
       <AccordionItem value="item-1">
         <AccordionTrigger>{label}</AccordionTrigger>
         {content}
