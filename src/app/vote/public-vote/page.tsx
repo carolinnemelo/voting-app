@@ -1,12 +1,10 @@
 import {
   issueFeature,
-  createPublicVoteAndVoteAction,
-  publicVoteFeature,
   FormPublicVote,
 } from "@/features";
 
 export default async function Home() {
-  const representativesTableRows: RepresentativesTableRows[]  =
+  const representativesTableRows  =
   await issueFeature.service.getAllRepresentatives();
   console.log(representativesTableRows)
   return (
@@ -17,10 +15,3 @@ export default async function Home() {
   );
 }
 
-type RepresentativesTableRows= {
-  email: string;
-  id: number;
-  createdAt: Date;
-  representativeName: string;
-  vote: number | null;
-}

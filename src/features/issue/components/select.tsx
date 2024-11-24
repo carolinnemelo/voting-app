@@ -1,3 +1,5 @@
+import { RepresentativesTableRows } from "@/db";
+
 export function Select({
   representativeTableRows,
 }: {
