@@ -1,5 +1,6 @@
 import { createPublicVoteAndVoteAction } from "@/features";
 import { Select } from "./select";
+import { Button } from "./button";
 
 export function FormPublicVote({
   representativeList,
@@ -8,9 +9,9 @@ export function FormPublicVote({
 }) {
   return (
     <form action={createPublicVoteAndVoteAction}>
-      <label htmlFor="publicVoteName">Public Vote Name</label>
-      <input type="text" name="publicVoteName" id="publicVoteName" />
+
       <Select representativeList={representativeList} />
+      <Button type="submit" label="Vote"/>
     </form>
   );
 }
