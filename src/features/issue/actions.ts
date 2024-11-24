@@ -1,6 +1,5 @@
 "use server";
 
-import { choicesTable } from "@/db";
 import { issueFeature } from "./instance";
 
 export async function createIssueAction(formData: FormData) {

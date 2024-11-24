@@ -1,60 +1,40 @@
 "use client";
 
-import { voteOnChoice } from "@/features";
-import { useState } from "react";
-
-const mockData = [
-  {
-    id: 1,
-    issueName: "Cats vs Dogs",
-    choices: [
-      { id: 101, choiceName: "Cats" },
-      { id: 102, choiceName: "Dogs" },
-    ],
-  },
-  {
-    id: 2,
-    issueName: "Pizza vs Burger",
-    choices: [
-      { id: 201, choiceName: "Pizza" },
-      { id: 202, choiceName: "Burger" },
-    ],
-  },
-  {
-    id: 3,
-    issueName: "Tea vs Coffee",
-    choices: [
-      { id: 301, choiceName: "Tea" },
-      { id: 302, choiceName: "Coffee" },
-    ],
-  },
-];
+import { fetchChoicesByIssue, issueFeature, voteOnChoice } from "@/features";
+import { useEffect, useState } from "react";
 
 export default function Representative() {
   const [selectedChoices, setSelectedChoices] = useState<Choice[]>([]);
-  
-  function handleIssueChange(event: { target: { value: string } }) {
+  const [issuesList, setIssuesList] = useState<Issue[]>([]);
+
+  useEffect(() => {
+    async function fetchIssuesList() {
+      const fetchIssuesList =  await issueFeature.service.getAll();
+      setIssuesList(fetchIssuesList)
+    }
+    fetchIssuesList();
+  }, []);
+
+  async function handleIssueChange(event: { target: { value: string } }) {
     const issueId = Number(event.target.value);
-    const issue = mockData.find((issue) => issue.id === issueId);
+    const issue = issuesList.find((issue) => issue.id === issueId);
 
     if (!issue) {
       setSelectedChoices([]);
       return;
     }
 
-    const issueChoices = issue.choices.map((choice) => {
-      return { choiceName: choice.choiceName, id: choice.id };
-    });
-    console.log(issueChoices);
-    setSelectedChoices(issueChoices);
+    const choicesByIssue = await fetchChoicesByIssue(issueId);
+    setSelectedChoices(choicesByIssue);
   }
+
   return (
     <>
       <h1>Representative Vote Page</h1>
       <form action={voteOnChoice}>
         <select name="selectedIssue" onChange={handleIssueChange}>
           <option value="">Choose an issue</option>
-          {mockData.map((issue) => (
+          {issuesList.map((issue) => (
             <option value={issue.id} key={issue.id}>
               {issue.issueName}
             </option>
@@ -78,3 +58,10 @@ type Choice = {
   id: number;
   choiceName: string;
 };
+
+type Issue = {
+  issueName: string;
+  id: number;
+  createdAt: Date;
+  endTime: Date | null;
+}
