@@ -3,7 +3,7 @@ import { issueFeature } from "../instance";
 export function SelectIssue({
   issuesWithChoicesList,
 }: {
-  issuesWithChoicesList: Issue[];
+  issuesWithChoicesList:any;
 }) {
   return (
     <div>
