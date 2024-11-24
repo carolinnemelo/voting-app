@@ -41,25 +41,26 @@ const representativeSchema = z.object({
   email: z.string().email("Insert Valid Email"),
 });
 
-
 export async function createRepresentativeAction(
   prevState: RepresentativeInsert,
   formData: FormData
 ) {
 
   const validatedFields = representativeSchema.safeParse({
-    name: formData.get("representativeName"),
+    representativeName: formData.get("representativeName"),
     email: formData.get("email"),
-})
-
+  });
 
   if (!validatedFields.success) {
+    console.log(validatedFields.error)
     return {
       errors: validatedFields.error.flatten().fieldErrors,
       message: "Missing Fields",
-    }
+    };
   }
-  await issueFeature.service.addRepresentative({...validatedFields.data});
+
+  await issueFeature.service.addRepresentative({ ...validatedFields.data });
+  revalidatePath("/new-representative")
 }
 
 export async function fetchChoicesByIssue(issueId: number) {
