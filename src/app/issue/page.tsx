@@ -1,7 +1,7 @@
 
 import { ReusableAccordion, ReusableCard } from "@/components";
 import { Main } from "@/components/main";
-import { issueFeature, Form } from "@/features";
+import { issueFeature, FormCreateIssue } from "@/features";
 
 export default async function Issue() {
   const issueList = await issueFeature.service.getAllIssuesAndChoices();
@@ -11,8 +11,8 @@ export default async function Issue() {
     <>
       <Main>
         <ReusableCard cardTitle="Create new Issue">
+          <FormCreateIssue />
           <ReusableAccordion label="All Issues" list={issuesNamesList} />
-          <Form />
         </ReusableCard>
       </Main>
     </>

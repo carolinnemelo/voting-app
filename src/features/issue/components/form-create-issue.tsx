@@ -4,11 +4,12 @@ import { createIssueAction, State } from "../actions";
 import { useActionState } from "react";
 import { ErrorMessage } from ".";
 
-export function Form() {
+export function FormCreateIssue() {
   const initialState: State = { message: null, errors: {} };
   const [state, formAction] = useActionState(createIssueAction, initialState);
 
   return (
+    
     <form action={formAction}>
       <Input typeOfInput="text" label="Issue name" nameOfInput="issueName" />
       {state?.errors.issueName && (
