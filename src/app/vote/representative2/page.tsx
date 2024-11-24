@@ -1,8 +1,8 @@
 import { issueFeature, SelectIssue } from "@/features";
 
 export default async function VoteRepresentative() {
-  const rawData = await issueFeature.service.getAllIssuesAndChoices();
-  const groupedData = rawData.reduce((accumulatorObject, currentIssue) => {
+  const rawData: RawIssue[] = await issueFeature.service.getAllIssuesAndChoices();
+  const groupedData = rawData.reduce((accumulatorObject: any, currentIssue) => {
     if (!accumulatorObject[currentIssue.issueId]) {
       accumulatorObject[currentIssue.issueId] = {
         id: currentIssue.issueId,
@@ -30,4 +30,15 @@ export default async function VoteRepresentative() {
       {/* <SelectIssue issuesWithChoicesList={issuesListWithChoices } /> */}
     </>
   );
+}
+type Choice = {
+  id: number;
+  choiceName: string;
+};
+
+type RawIssue = {
+  issueId: number;
+  issueName: string;
+  choiceId: number | null;
+  choiceName: string | null;
 }
