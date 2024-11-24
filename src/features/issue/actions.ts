@@ -5,20 +5,26 @@ import { issueFeature } from "./instance";
 import { z } from "zod";
 
 
-const IssueSchema = z.object({
+const issueSchema = z.object({
   issueName: z.string().min(1, "Name can not be empty"),
   choice1: z.string().min(1, "Can not be empty"),
   choice2: z.string().min(1, "Can not be empty")
 });
 
 export async function createIssueAction(formData: FormData) {
-  const issueName = formData.get("issueName") as string;
-  const choice1 = formData.get("choice1") as string;
-  const choice2 = formData.get("choice2") as string;
-  if (!issueName) {
-    return;
-  }
-  await issueFeature.service.createIssue({ issueName, choice1, choice2 });
+
+const data = {
+  issueName: formData.get("issueName") as string,
+  choice1: formData.get("choice1") as string,
+  choice2: formData.get("choice2") as string,
+};
+const parsedData = issueSchema.safeParse(data)
+if(!parsedData.success) {
+  console.log(parsedData.error)
+  return
+}
+
+  await issueFeature.service.createIssue({ ...parsedData.data });
   revalidatePath("/issue")
 }
 
