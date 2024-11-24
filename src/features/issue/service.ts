@@ -6,6 +6,7 @@ import {
   InsertIssue,
 } from "@/db";
 import { eq } from "drizzle-orm";
+import { issueFeature } from "./instance";
 
 export function createService() {
   return {
