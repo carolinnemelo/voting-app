@@ -4,6 +4,7 @@ import {
   issuesTable,
   representativesTable,
   InsertIssue,
+  Issue,
 } from "@/db";
 import { eq } from "drizzle-orm";
 
@@ -36,28 +37,31 @@ export function createService() {
         .leftJoin(choicesTable, eq(choicesTable.issueId, issuesTable.id))
         .orderBy(issuesTable.id);
 
-      const issueWithChoicesArr = rawData.reduce((acc, currentIssue) => {
-        console.log(acc); //[]
-        let existingIssue = acc.find(
-          (issue: Issue) => issue.issueId === currentIssue.issueId
-        );
-        if (!existingIssue) {
-          existingIssue = {
-            issueId: currentIssue.issueId,
-            issueName: currentIssue.issueName,
-            choices: [],
-          };
+      const issueWithChoicesArr = rawData.reduce<Issue[]>(
+        (acc, currentIssue) => {
+          let existingIssue = acc.find(
+            (issue) => issue.issueId === currentIssue.issueId
+          );
+          if (!existingIssue) {
+            existingIssue = {
+              issueId: currentIssue.issueId,
+              issueName: currentIssue.issueName,
+              choices: [],
+            };
 
-          acc.push(existingIssue)
-        }
-        if(currentIssue.choiceId !== null){
-          existingIssue.choices.push({
-            choiceId: currentIssue.choiceId,
-            choiceName: currentIssue.choiceName
-          })
-        }
-
-      }, []);
+            acc.push(existingIssue);
+          }
+          if (currentIssue.choiceId !== null) {
+            existingIssue.choices.push({
+              choiceId: currentIssue.choiceId,
+              choiceName: currentIssue.choiceName,
+            });
+          }
+          return acc;
+        },
+        []
+      );
+      return issueWithChoicesArr;
     },
 
     async createIssue({ issueName, choice1, choice2 }: InsertIssue) {
@@ -91,14 +95,3 @@ export function createService() {
     },
   };
 }
-
-type Choice = {
-  choiceId: number | null;
-  choiceName: string | null;
-};
-
-type Issue = {
-  issueId: number;
-  issueName: string;
-  choices: Choice[];
-};

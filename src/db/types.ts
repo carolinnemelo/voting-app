@@ -24,3 +24,14 @@ export type RepresentativesTableRows= {
   representativeName: string;
   vote: number | null;
 }
+
+export type Choice = {
+  choiceId: number | null;
+  choiceName: string | null;
+};
+
+export type Issue = {
+  issueId: number;
+  issueName: string;
+  choices: Choice[];
+};
