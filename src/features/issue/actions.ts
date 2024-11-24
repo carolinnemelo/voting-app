@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { issueFeature } from "./instance";
 
 export async function createIssueAction(formData: FormData) {
@@ -10,6 +11,7 @@ export async function createIssueAction(formData: FormData) {
     return;
   }
   await issueFeature.service.createIssue({ issueName, choice1, choice2 });
+  revalidatePath("/issue")
 }
 
 export async function createRepresentativeAction(formData: FormData) {
