@@ -1,19 +1,11 @@
 "use client";
 
-import { fetchChoicesByIssue, issueFeature, voteOnChoice } from "@/features";
+import { fetchChoicesByIssue, fetchIssuesList, voteOnChoice } from "@/features";
 import { useEffect, useState } from "react";
+
 
 export default function Representative() {
   const [selectedChoices, setSelectedChoices] = useState<Choice[]>([]);
-  const [issuesList, setIssuesList] = useState<Issue[]>([]);
-
-  useEffect(() => {
-    async function fetchIssuesList() {
-      const fetchIssuesList =  await issueFeature.service.getAll();
-      setIssuesList(fetchIssuesList)
-    }
-    fetchIssuesList();
-  }, []);
 
   async function handleIssueChange(event: { target: { value: string } }) {
     const issueId = Number(event.target.value);
@@ -31,7 +23,6 @@ export default function Representative() {
   return (
     <>
       <h1>Representative Vote Page</h1>
-      <form action={voteOnChoice}>
         <select name="selectedIssue" onChange={handleIssueChange}>
           <option value="">Choose an issue</option>
           {issuesList.map((issue) => (
@@ -40,6 +31,7 @@ export default function Representative() {
             </option>
           ))}
         </select>
+      <form action={voteOnChoice}>
         <select name="selectedChoice">
           <option value="">Select your choice</option>
           {selectedChoices.map((choice) => (
