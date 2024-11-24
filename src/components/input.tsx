@@ -1,4 +1,5 @@
 import { InputShad } from "./shad-components";
+import { Label } from "./shad-components/label";
 
 type Props = {
   label: string;
@@ -9,7 +10,7 @@ type Props = {
 export function Input({ label, nameOfInput, typeOfInput }: Props) {
   return (
     <>
-      <label className="px-2 py-1.5 text-sm font-semibold" htmlFor={nameOfInput}>{label}</label>
+      <Label htmlFor={nameOfInput}>{label}</Label>
       <InputShad type={typeOfInput} name={nameOfInput} id={nameOfInput} />
     </>
   );
