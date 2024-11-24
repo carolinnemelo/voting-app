@@ -1,7 +1,6 @@
+import { Button, Input, Select } from "@/components";
 import { createPublicVoteAndVoteAction } from "@/features";
-import { Select } from "../../../components/select";
-import { Button } from "../../../components/button";
-import { Input } from "../../../components/input";
+
 
 export function FormPublicVote({
   representativeList,
