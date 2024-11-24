@@ -29,12 +29,11 @@ export async function createIssueAction(prevState: State, formData: FormData) {
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
-      message: "Missing Fields. Failed to Create Invoice.",
+      message: "Missing Fields",
     };
   }
   await issueFeature.service.createIssue({ ...validatedFields.data });
   revalidatePath("/issue");
-  redirect("/issue");
 }
 
 export async function createRepresentativeAction(formData: FormData) {

@@ -1,4 +1,4 @@
-"use client";
+
 import { ReusableAccordion, ReusableCard } from "@/components";
 import { Main } from "@/components/main";
 import { issueFeature, Form } from "@/features";
