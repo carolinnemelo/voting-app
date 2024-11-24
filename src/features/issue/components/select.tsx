@@ -1,8 +1,9 @@
 export function Select({
-  representativeList,
+  representativeTableRows,
 }: {
-  representativeList: JSX.Element[];
+  representativeTableRows: RepresentativesTableRows[];
 }) {
+  const representativeOptions = generateRepresentativeList(representativeTableRows)
   return (
     <>
       <label
@@ -17,8 +18,22 @@ export function Select({
         id="representativeSelect"
       >
         <option value="">Please choose an option</option>
-        {representativeList}
+        {representativeOptions}
       </select>
     </>
   );
 }
+
+async function generateRepresentativeList(representativesTableRows: RepresentativesTableRows[]) {
+  const representativeList = representativesTableRows.map((representative) => {
+    return (
+      <option key={representative.id} value={representative.id}>
+        {representative.representativeName}
+      </option>
+    );
+  });
+  return representativeList;
+}
+
+
+
