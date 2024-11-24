@@ -1,5 +1,4 @@
-import { InputShad } from "./shad-components";
-import { Label } from "./shad-components/label";
+import { InputShad, Label } from "./shad-components";
 
 type Props = {
   label: string;
@@ -15,4 +14,3 @@ export function Input({ label, nameOfInput, typeOfInput }: Props) {
     </>
   );
 }
-
