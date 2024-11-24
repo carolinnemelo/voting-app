@@ -6,5 +6,11 @@ type Props = {
 };
 
 export function Button({ label, type }: Props) {
-  return <ButtonShad className="mt-3" type={type}>{label}</ButtonShad>;
+  return (
+    <div className="flex mt-4">
+      <ButtonShad className="flex-grow" type={type}>
+        {label}
+      </ButtonShad>
+    </div>
+  );
 }
