@@ -2,7 +2,6 @@ import { Button, Input } from "@/components";
 import { RepresentativesTableRows } from "@/db";
 import { createPublicVoteAndVoteAction } from "@/features";
 import { Select } from "./select";
-
 export function FormPublicVote({ representativeTableRows }:{representativeTableRows:RepresentativesTableRows[]}) {
   return (
     <form action={createPublicVoteAndVoteAction}>
@@ -16,4 +15,5 @@ export function FormPublicVote({ representativeTableRows }:{representativeTableR
     </form>
   );
 }
+
 

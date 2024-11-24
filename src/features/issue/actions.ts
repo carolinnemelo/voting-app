@@ -2,6 +2,14 @@
 
 import { revalidatePath } from "next/cache";
 import { issueFeature } from "./instance";
+import { z } from "zod";
+
+
+const IssueSchema = z.object({
+  issueName: z.string().min(1, "Name can not be empty"),
+  choice1: z.string().min(1, "Can not be empty"),
+  choice2: z.string().min(1, "Can not be empty")
+});
 
 export async function createIssueAction(formData: FormData) {
   const issueName = formData.get("issueName") as string;
