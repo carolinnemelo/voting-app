@@ -2,6 +2,7 @@ import {
   issueFeature,
   createPublicVoteAndVoteAction,
   publicVoteFeature,
+  FormPublicVote,
 } from "@/features";
 
 export default async function Home() {
@@ -9,7 +10,7 @@ export default async function Home() {
   return (
     <>
       <h1>Public Vote Form</h1>
-   
+      <FormPublicVote representativeList={representativeList}/>
     </>
   );
 }
