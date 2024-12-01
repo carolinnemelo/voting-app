@@ -8,6 +8,13 @@ import {
   RepresentativeInsert,
 } from "@/db";
 import { eq } from "drizzle-orm";
+import { z } from "zod";
+
+const issueSchema = z.object({
+  issueName: z.string().min(1, "Name can not be empty"),
+  choice1: z.string().min(1, "Can not be empty"),
+  choice2: z.string().min(1, "Can not be empty"),
+});
 
 export function createService() {
   return {
@@ -64,8 +71,20 @@ export function createService() {
       );
       return issueWithChoicesArr;
     },
+    // async createIssue({ issueName, choice1, choice2 }: InsertIssue) {
 
-    async createIssue({ issueName, choice1, choice2 }: InsertIssue) {
+    async createIssue(formData: FormData) {
+      const validatedFields = issueSchema.safeParse({
+        issueName: formData.get("issueName"),
+        choice1: formData.get("choice1"),
+        choice2: formData.get("choice2"),
+      });
+      if (!validatedFields.success) {
+        return {
+          errors: validatedFields.error.flatten().fieldErrors,
+        };
+      }
+      const { issueName, choice1, choice2 } = validatedFields.data
       const row = await db
         .insert(issuesTable)
         .values({
@@ -88,7 +107,10 @@ export function createService() {
       return await db.select().from(representativesTable);
     },
 
-    async addRepresentative({representativeName, email}: RepresentativeInsert) {
+    async addRepresentative({
+      representativeName,
+      email,
+    }: RepresentativeInsert) {
       await db.insert(representativesTable).values({
         representativeName: representativeName,
         email,

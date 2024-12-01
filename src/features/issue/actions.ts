@@ -5,11 +5,7 @@ import { issueFeature } from "./instance";
 import { z } from "zod";
 import { RepresentativeInsert } from "@/db";
 
-const issueSchema = z.object({
-  issueName: z.string().min(1, "Name can not be empty"),
-  choice1: z.string().min(1, "Can not be empty"),
-  choice2: z.string().min(1, "Can not be empty"),
-});
+
 
 export type State = {
   errors: {
@@ -20,19 +16,8 @@ export type State = {
   message?: string | null;
 };
 
-export async function createIssueAction(prevState: State, formData: FormData) {
-  const validatedFields = issueSchema.safeParse({
-    issueName: formData.get("issueName") as string,
-    choice1: formData.get("choice1") as string,
-    choice2: formData.get("choice2") as string,
-  });
-  if (!validatedFields.success) {
-    return {
-      errors: validatedFields.error.flatten().fieldErrors,
-      message: "Missing Fields",
-    };
-  }
-  await issueFeature.service.createIssue({ ...validatedFields.data });
+export async function createIssueAction(formData: FormData) {
+  await issueFeature.service.createIssue(formData);
   revalidatePath("/issue");
 }
 
