@@ -3,7 +3,6 @@ import {
   choicesTable,
   issuesTable,
   representativesTable,
-  InsertIssue,
   Issue,
   RepresentativeInsert,
 } from "@/db";
@@ -11,9 +10,9 @@ import { eq } from "drizzle-orm";
 import { z } from "zod";
 
 const issueSchema = z.object({
-  issueName: z.string().min(1, "Name can not be empty"),
-  choice1: z.string().min(1, "Can not be empty"),
-  choice2: z.string().min(1, "Can not be empty"),
+  issueName: z.string().min(1),
+  choice1: z.string().min(1),
+  choice2: z.string().min(1),
 });
 
 export function createService() {

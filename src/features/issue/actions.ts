@@ -5,25 +5,14 @@ import { issueFeature } from "./instance";
 import { z } from "zod";
 import { RepresentativeInsert } from "@/db";
 
-
-
-export type State = {
-  errors: {
-    issueName?: string[] | undefined;
-    choice1?: string[] | undefined;
-    choice2?: string[] | undefined;
-  };
-  message?: string | null;
-};
-
 export async function createIssueAction(formData: FormData) {
   await issueFeature.service.createIssue(formData);
   revalidatePath("/issue");
 }
 
 const representativeSchema = z.object({
-  representativeName: z.string().min(1, "Name can not be empty"),
-  email: z.string().email("Insert Valid Email"),
+  representativeName: z.string().min(1),
+  email: z.string().email(),
 });
 
 export async function createRepresentativeAction(
@@ -52,6 +41,6 @@ export async function fetchChoicesByIssue(issueId: number) {
   return await issueFeature.service.getChoicesByIssueId(issueId);
 }
 
-export async function fetchIssuesList() {
-  const fetchIssuesList = await issueFeature.service.getAll();
-}
+// export async function fetchIssuesList() {
+//   const fetchIssuesList = await issueFeature.service.getAll();
+// }

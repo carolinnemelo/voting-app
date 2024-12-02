@@ -1,21 +1,22 @@
-import { ReusableAccordion, ReusableCard } from "@/components";
+import { ReusableCard } from "@/components";
 import { Main } from "@/components/main";
-import { issueFeature, FormNewRepresentative } from "@/features";
+// import { FormNewRepresentative } from "@/features";
 
 export default async function NewRepresentative() {
-  const representativeList = await issueFeature.service.getAllRepresentatives();
-  const representativeNamesList = representativeList.map(
-    (representative) => representative.representativeName
-  );
+  // const representativeList = await issueFeature.service.getAllRepresentatives();
+  // const representativeNamesList = representativeList.map(
+    // (representative) => representative.representativeName
+  // );
   return (
     <>
       <Main>
         <ReusableCard cardTitle="Add new representative Page">
-          <ReusableAccordion
+          AI MEU DEUS
+          {/* <ReusableAccordion
             label="All Representatives"
             list={representativeNamesList}
-          />
-          <FormNewRepresentative />
+          /> */}
+          {/* <FormNewRepresentative /> */}
         </ReusableCard>
       </Main>
     </>

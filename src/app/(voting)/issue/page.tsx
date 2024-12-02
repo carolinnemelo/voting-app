@@ -1,20 +1,18 @@
+import { issueFeature } from "@/features";
 
-import { ReusableAccordion, ReusableCard } from "@/components";
-import { Main } from "@/components/main";
-import { issueFeature, FormCreateIssue } from "@/features";
+export default async function IssuePage() {
+  try {
+    // Busca de dados feita no servidor
+    const issues = await issueFeature.service.getAllIssuesAndChoices();
 
-export default async function Issue() {
-  const issueList = await issueFeature.service.getAllIssuesAndChoices();
-  const issuesNamesList = issueList.map((issue) => issue.issueName);
-
-  return (
-    <>
-      <Main>
-        <ReusableCard cardTitle="Create new Issue">
-          <ReusableAccordion label="All Issues" list={issuesNamesList} />
-          <FormCreateIssue />
-        </ReusableCard>
-      </Main>
-    </>
-  );
+    return (
+      <div>
+        <h1>Issues</h1>
+        <pre>{JSON.stringify(issues, null, 2)}</pre>
+      </div>
+    );
+  } catch (error) {
+    console.error("Erro ao buscar issues:", error);
+    return <p>Erro ao carregar os dados.</p>;
+  }
 }
