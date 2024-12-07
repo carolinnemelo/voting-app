@@ -1,19 +1,23 @@
+import { issueService } from "../instance";
+import { faker } from "@faker-js/faker";
 
+
+function simulateFormData() {
+  const formData = new globalThis.FormData();
+  formData.append("issueName", faker.commerce.product());
+  formData.append("choice1", faker.commerce.productName());
+  formData.append("choice2", faker.commerce.productName());
+  return formData;
+}
 
 export const seedIssues = async () => {
-    const newScore = {
-        frontend: Math.round(Math.random() * 100),
-        backend: Math.round(Math.random() * 100),
-        individualCommunication: Math.round(Math.random() * 100),
-        teamCollaboration: Math.round(Math.random() * 100),
-        design: Math.round(Math.random() * 100),
-        management: Math.round(Math.random() * 100),
-    };
-    
-    try {
-        await scoresService.addScores(newScore);
-    } catch (error) {
-        console.log("Something went wrong when seeding scores " + error);
-    }
-    console.log("Done seeding scores...");
+  const issues = Array.from({ length: 10 }).map(() => simulateFormData());
+
+  for (const issue of issues) {
+    await issueService.createIssue(issue);
+  }
+
+  console.log("Done seeding!");
 };
+
+seedIssues();

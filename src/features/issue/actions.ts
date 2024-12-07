@@ -6,7 +6,7 @@ import { z } from "zod";
 import { issueService, RepresentativeInsert } from ".";
 
 export async function createIssueAction(formData: FormData) {
-  await issueService.validateFieldsAndCreateIssue(formData); 
+  await issueService.createIssue(formData); 
   revalidatePath("/issue");
 }
 
@@ -26,7 +26,6 @@ export async function createRepresentativeAction(
   });
 
   if (!validatedFields.success) {
-    console.log(validatedFields.error)
     return {
       errors: validatedFields.error.flatten().fieldErrors,
       message: "Missing Fields",

@@ -72,21 +72,24 @@ export function createIssueService(db: Db) {
       return issueWithChoicesArr;
     },
 
-    async validateFieldsAndCreateIssue(formData: FormData) {
+    async validateFields(formData: FormData) {
       const validatedFields = issueSchema.safeParse({
         issueName: formData.get("issueName"),
         choice1: formData.get("choice1"),
         choice2: formData.get("choice2"),
       });
       if (!validatedFields.success) {
-        return {
-          errors: validatedFields.error.flatten().fieldErrors,
-        };
+        return;
       }
-      this.createIssue(validatedFields.data);
+      return validatedFields.data;
     },
 
-    async createIssue(validatedFields: InsertIssue) {
+    async createIssue(formData: FormData) {
+      const validatedFields = await this.validateFields(formData);
+      if (!validatedFields) {
+        return;
+      }
+      console.log(validatedFields);
       const { issueName, choice1, choice2 } = validatedFields;
       const row = await db
         .insert(issuesTable)
