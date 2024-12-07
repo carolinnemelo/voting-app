@@ -1,7 +1,5 @@
-"use client";
-import { Button, Input} from "@/components";
+import { Button, Input } from "@/components";
 import { createIssueAction } from "../actions";
-
 
 export async function FormCreateIssue() {
   return (
@@ -13,4 +11,3 @@ export async function FormCreateIssue() {
     </form>
   );
 }
-
