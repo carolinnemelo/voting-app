@@ -1,20 +1,13 @@
 import { Db } from "@/db/db";
-import { z } from "zod";
 import {
   choicesTable,
   issuesTable,
   representativesTable,
   Issue,
-  RepresentativeInsert,
-  InsertIssue,
 } from ".";
 import { eq } from "drizzle-orm";
+import { issueSchema, representativeSchema } from "./zod-schema";
 
-const issueSchema = z.object({
-  issueName: z.string().min(1),
-  choice1: z.string().min(1),
-  choice2: z.string().min(1),
-});
 
 export function createIssueService(db: Db) {
   return {
@@ -89,7 +82,6 @@ export function createIssueService(db: Db) {
       if (!validatedFields) {
         return;
       }
-      console.log(validatedFields);
       const { issueName, choice1, choice2 } = validatedFields;
       const row = await db
         .insert(issuesTable)
@@ -114,10 +106,17 @@ export function createIssueService(db: Db) {
       return await db.select().from(representativesTable);
     },
 
-    async addRepresentative({
-      representativeName,
-      email,
-    }: RepresentativeInsert) {
+    async addRepresentative(formData: FormData) {
+      const validatedFields = representativeSchema.safeParse({
+        representativeName: formData.get("representativeName"),
+        email: formData.get("email"),
+      });
+    
+      if (!validatedFields.success) {
+        console.error(validatedFields.error.flatten().fieldErrors);
+        return;
+      }
+      const { representativeName, email } = validatedFields.data;
       await db.insert(representativesTable).values({
         representativeName: representativeName,
         email,
