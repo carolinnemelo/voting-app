@@ -1,4 +1,3 @@
-"use client";
 import { createRepresentativeAction } from "../actions";
 import { Button, Input } from "@/components";
 
