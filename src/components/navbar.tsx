@@ -12,9 +12,9 @@ export function Navbar() {
     <NavigationMenu className="top-0">
       <NavigationMenuList>
         <NavigationMenuItem>
-          <Link href="/issue" legacyBehavior passHref>
+          <Link href="/new-issue" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Issue
+              New Issue
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>

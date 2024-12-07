@@ -1,3 +1,10 @@
+import { Main } from "@/components/main";
+
+
 export default function Home() {
-  return <h1>Home Page</h1>;
+  return (
+    <Main>
+      <h1>Home Page</h1>;
+    </Main>
+  ); 
 }
