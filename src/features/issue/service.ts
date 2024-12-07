@@ -90,6 +90,7 @@ export function createIssueService(db: Db) {
           issueName,
         })
         .returning({ id: issuesTable.id });
+        
       await db.insert(choicesTable).values([
         {
           choiceName: choice1,

@@ -9,7 +9,7 @@ import {
 
 export function Navbar() {
   return (
-    <NavigationMenu>
+    <NavigationMenu className="top-0">
       <NavigationMenuList>
         <NavigationMenuItem>
           <Link href="/issue" legacyBehavior passHref>

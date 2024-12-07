@@ -1,12 +1,12 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { issueFeature } from "./instance";
+
 import { z } from "zod";
-import { RepresentativeInsert } from "@/db";
+import { issueService, RepresentativeInsert } from ".";
 
 export async function createIssueAction(formData: FormData) {
-  await issueFeature.service.createIssue(formData);
+  await issueService.createIssue(formData); 
   revalidatePath("/issue");
 }
 
