@@ -18,14 +18,6 @@ export type ChoicesTableRows = {
   issueId: number | null;
 }[];
 
-export type RepresentativesTableRows = {
-  email: string;
-  id: number;
-  createdAt: Date;
-  representativeName: string;
-  vote: number | null;
-};
-
 export type Choice = {
   choiceId: number | null;
   choiceName: string | null;
