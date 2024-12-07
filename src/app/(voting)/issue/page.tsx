@@ -1,9 +1,13 @@
+import { ReusableCard } from "@/components";
+import { Main } from "@/components/main";
 import { FormCreateIssue } from "@/features";
 
 export default function IssuePage() {
   return (
-    <main className="mt-11 bg-red-400">
+    <Main>
+      <ReusableCard cardTitle="Create Issue">
       <FormCreateIssue />
-    </main>
+      </ReusableCard>
+    </Main>
   );
 }
