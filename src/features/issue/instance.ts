@@ -1,3 +1,5 @@
-import { createFeature } from "./feature";
+import { db } from "@/db";
+import { createIssueService } from "./service";
 
-export const issueFeature = createFeature();
+
+export const issueFeature = createIssueService(db);

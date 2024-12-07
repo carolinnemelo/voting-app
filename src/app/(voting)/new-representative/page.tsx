@@ -1,11 +1,12 @@
-import { ReusableCard } from "@/components";
+import {  ReusableCard } from "@/components";
 import { Main } from "@/components/main";
-// import { FormNewRepresentative } from "@/features";
+// import {  issueFeature } from "@/features";
+import { FormNewRepresentative } from "@/features/issue/components/form-new-representative";
 
 export default async function NewRepresentative() {
   // const representativeList = await issueFeature.service.getAllRepresentatives();
   // const representativeNamesList = representativeList.map(
-    // (representative) => representative.representativeName
+  //   (representative) => representative.representativeName
   // );
   return (
     <>
@@ -15,8 +16,8 @@ export default async function NewRepresentative() {
           {/* <ReusableAccordion
             label="All Representatives"
             list={representativeNamesList}
-          /> */}
-          {/* <FormNewRepresentative /> */}
+          />  */}
+           <FormNewRepresentative />
         </ReusableCard>
       </Main>
     </>

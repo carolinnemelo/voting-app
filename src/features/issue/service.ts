@@ -1,13 +1,13 @@
-import { db } from "@/db/db";
+import { Db } from "@/db/db";
+import { z } from "zod";
 import {
   choicesTable,
   issuesTable,
   representativesTable,
   Issue,
   RepresentativeInsert,
-} from "@/db";
+} from ".";
 import { eq } from "drizzle-orm";
-import { z } from "zod";
 
 const issueSchema = z.object({
   issueName: z.string().min(1),
@@ -15,7 +15,7 @@ const issueSchema = z.object({
   choice2: z.string().min(1),
 });
 
-export function createService() {
+export function createIssueService(db: Db) {
   return {
     async getAll() {
       return await db.select().from(issuesTable);
@@ -83,7 +83,7 @@ export function createService() {
           errors: validatedFields.error.flatten().fieldErrors,
         };
       }
-      const { issueName, choice1, choice2 } = validatedFields.data
+      const { issueName, choice1, choice2 } = validatedFields.data;
       const row = await db
         .insert(issuesTable)
         .values({

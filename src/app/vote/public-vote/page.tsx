@@ -2,7 +2,7 @@ import { ReusableCard } from "@/components";
 import { Main } from "@/components/main";
 // import { issueFeature, FormPublicVote } from "@/features";
 
-export default async function Home() {
+export default function Home() {
   // const representativesTableRows =
   //   await issueFeature.service.getAllRepresentatives();
   return (

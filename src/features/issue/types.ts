@@ -12,20 +12,19 @@ export type RepresentativeInsert = typeof representativesTable.$inferInsert;
 
 export type InsertPublicVote = typeof publicVotesTable.$inferInsert;
 
-export type ChoicesTableRows =  {
+export type ChoicesTableRows = {
   id: number;
   choiceName: string;
   issueId: number | null;
-}[]
+}[];
 
-
-export type RepresentativesTableRows= {
+export type RepresentativesTableRows = {
   email: string;
   id: number;
   createdAt: Date;
   representativeName: string;
   vote: number | null;
-}
+};
 
 export type Choice = {
   choiceId: number | null;

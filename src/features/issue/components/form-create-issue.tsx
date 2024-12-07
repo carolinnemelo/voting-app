@@ -1,7 +1,9 @@
+"use client";
 import { Button, Input} from "@/components";
 import { createIssueAction } from "../actions";
 
-export function FormCreateIssue() {
+
+export async function FormCreateIssue() {
   return (
     <form action={createIssueAction}>
       <Input typeOfInput="text" label="Issue name" nameOfInput="issueName" />
