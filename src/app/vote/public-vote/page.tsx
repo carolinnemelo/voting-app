@@ -1,16 +1,15 @@
 import { ReusableCard } from "@/components";
 import { Main } from "@/components/main";
-// import { issueFeature, FormPublicVote } from "@/features";
+import { issueService } from "@/features";
 
-export default function Home() {
-  // const representativesTableRows =
-  //   await issueFeature.service.getAllRepresentatives();
+export default async function Home() {
+  const representativesTableRows =
+    await issueService.getAllRepresentatives();
   return (
     <>
       <Main>
         <ReusableCard cardTitle="Public Vote Form">
-          AI AI AI 
-          {/* <FormPublicVote representativeTableRows={representativesTableRows} /> */}
+          <FormPublicVote representativeTableRows={representativesTableRows} />
         </ReusableCard>
       </Main>
     </>
