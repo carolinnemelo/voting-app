@@ -6,7 +6,7 @@ import { z } from "zod";
 import { issueService, RepresentativeInsert } from ".";
 
 export async function createIssueAction(formData: FormData) {
-  await issueService.createIssue(formData); 
+  await issueService.validateFieldsAndCreateIssue(formData); 
   revalidatePath("/issue");
 }
 

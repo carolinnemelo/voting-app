@@ -6,6 +6,7 @@ import {
   representativesTable,
   Issue,
   RepresentativeInsert,
+  InsertIssue,
 } from ".";
 import { eq } from "drizzle-orm";
 
@@ -70,9 +71,8 @@ export function createIssueService(db: Db) {
       );
       return issueWithChoicesArr;
     },
-    // async createIssue({ issueName, choice1, choice2 }: InsertIssue) {
 
-    async createIssue(formData: FormData) {
+    async validateFieldsAndCreateIssue(formData: FormData) {
       const validatedFields = issueSchema.safeParse({
         issueName: formData.get("issueName"),
         choice1: formData.get("choice1"),
@@ -83,14 +83,18 @@ export function createIssueService(db: Db) {
           errors: validatedFields.error.flatten().fieldErrors,
         };
       }
-      const { issueName, choice1, choice2 } = validatedFields.data;
+      this.createIssue(validatedFields.data);
+    },
+
+    async createIssue(validatedFields: InsertIssue) {
+      const { issueName, choice1, choice2 } = validatedFields;
       const row = await db
         .insert(issuesTable)
         .values({
           issueName,
         })
         .returning({ id: issuesTable.id });
-        
+
       await db.insert(choicesTable).values([
         {
           choiceName: choice1,
