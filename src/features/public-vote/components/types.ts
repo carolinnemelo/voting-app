@@ -1,5 +1,5 @@
 
-export type RepresentativesTableRows = {
+export type Representative = {
   email: string;
   id: number;
   createdAt: Date;
