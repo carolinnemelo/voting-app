@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { publicVoteAction } from "../actions";
 import { Representative } from "../types";
+import { Button } from "@/components";
 
 type Props = { representatives: Representative[] };
 
@@ -40,7 +41,7 @@ export function FormPublicVote({ representatives }: Props) {
           );
         })}
       </select>
-      <button type="submit">Vote</button>
+      <Button type="submit" label="Vote" />
     </form>
   );
 }

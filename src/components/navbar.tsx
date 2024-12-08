@@ -27,10 +27,19 @@ export function Navbar() {
           </Link>
         </NavigationMenuItem>
 
+
         <NavigationMenuItem>
           <Link href="/vote/public-vote" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               Public Vote
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+        
+        <NavigationMenuItem>
+          <Link href="/vote/statistics" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              Statistics
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
