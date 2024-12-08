@@ -20,10 +20,3 @@ export const representativesTable = pgTable("representatives", {
   createdAt: timestamp().defaultNow().notNull(),
 });
 
-export const publicVotesTable = pgTable("publicVotes", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  voterName: varchar().notNull(),
-  representativeId: integer("representativeId").references(()=> representativesTable.id),
-  preferenceId: integer("preferenceId").references(()=> choicesTable.id),
-});
-

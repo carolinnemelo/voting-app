@@ -1,7 +1,8 @@
-// import { publicVoteService } from ".";
+"use server";
+
+import { publicVoteService } from "./instance";
 
 export async function publicVoteAction(formData: FormData) {
-  console.log("publicVoteAction", formData);
-  // await publicVoteService.savePublicVote(formData);
-  return;
+  return await publicVoteService.savePublicVote(formData);
+
 }

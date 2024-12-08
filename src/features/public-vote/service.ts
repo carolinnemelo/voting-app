@@ -1,18 +1,21 @@
 import { Db } from "@/db";
 import { publicVoteSchema } from "./zod-schema";
+import { publicVotesTable } from "./schema";
 
 export function createPublicVoteService(db: Db) {
   return {
     async savePublicVote(formData: FormData) {
       const validatedFields = publicVoteSchema.safeParse({
-        email: formData.get("issueName"),
-        choice1: formData.get("choice1"),
+        email: formData.get("representativeSelect"),
       });
-
       if (!validatedFields.success) {
         return;
       }
-
+      
+      const { email } = validatedFields.data;
+      await db.insert(publicVotesTable).values({
+        email,
+      });
       
     }
   };
