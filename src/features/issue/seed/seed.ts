@@ -25,7 +25,7 @@ async function seedIssues() {
   for (const issue of issues) {
     await issueService.createIssue(issue);
   }
-  console.log("Done seeding!");
+  console.log("Done seeding issues!");
 };
 
 async function seedRepresentatives() {
@@ -33,7 +33,7 @@ async function seedRepresentatives() {
   for (const representative of representatives) {
     await issueService.addRepresentative(representative);
   }
-  console.log("Done seeding!");
+  console.log("Done seeding representatives!");
 };
 
 
