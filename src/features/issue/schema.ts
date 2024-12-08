@@ -12,6 +12,7 @@ export const choicesTable = pgTable("choices", {
   choiceName: varchar("choiceName").notNull(),
   issueId: integer("issueId").references(() => issuesTable.id),
 });
+
 export const representativesTable = pgTable("representatives", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   representativeName: varchar().notNull(),

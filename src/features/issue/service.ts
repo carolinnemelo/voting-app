@@ -1,12 +1,10 @@
 import { Db } from "@/db";
 import {
-  choicesTable,
-  issuesTable,
-  representativesTable,
   Issue,
 } from ".";
 import { eq } from "drizzle-orm";
 import { issueSchema, representativeSchema } from "./zod-schema";
+import { choicesTable, issuesTable, representativesTable } from "./schema";
 
 
 export function createIssueService(db: Db) {
