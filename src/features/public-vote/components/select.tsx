@@ -1,15 +1,19 @@
-import { RepresentativesTableRows } from "./types";
+import { Representative } from "./types";
 
 
 export function Select({
-  representativeTableRows,
+  representatives,
 }: {
-  representativeTableRows: RepresentativesTableRows[];
+  representatives: Representative[];
 }) {
   
-  const representativeOptions = generateRepresentativeList(
-    representativeTableRows
-  );
+  const representativeOptions = representatives.map((representative) => {
+    return (
+      <option key={representative.id} value={representative.id}>
+        {representative.representativeName}
+      </option>
+    );
+  });
   return (
     <>
       <label
@@ -28,17 +32,4 @@ export function Select({
       </select>
     </>
   );
-}
-
-function generateRepresentativeList(
-  representativesTableRows: RepresentativesTableRows[]
-) {
-  const representativeList = representativesTableRows.map((representative) => {
-    return (
-      <option key={representative.id} value={representative.id}>
-        {representative.representativeName}
-      </option>
-    );
-  });
-  return representativeList;
 }
