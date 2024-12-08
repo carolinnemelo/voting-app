@@ -17,7 +17,3 @@ export async function createRepresentativeAction(formData: FormData) {
 export async function fetchChoicesByIssue(issueId: number) {
   return await issueService.getChoicesByIssueId(issueId);
 }
-
-// export async function fetchIssuesList() {
-//   const fetchIssuesList = await issueFeature.service.getAll();
-// }
