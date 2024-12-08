@@ -1,4 +1,5 @@
+import { publicVoteService } from ".";
 
 export async function voteAction(formData: FormData) {
-  await voteService.savePublicVote(formData);
+  await publicVoteService.savePublicVote(formData);
 }
