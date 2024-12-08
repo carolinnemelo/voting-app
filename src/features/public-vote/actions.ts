@@ -1,7 +1,7 @@
-import { publicVoteService } from ".";
+// import { publicVoteService } from ".";
 
-export async function publicVoteAction(representatives) {
+export async function publicVoteAction(formData: FormData) {
   console.log("publicVoteAction", formData);
-  await publicVoteService.savePublicVote(formData);
+  // await publicVoteService.savePublicVote(formData);
   return;
 }
