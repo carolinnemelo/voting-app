@@ -103,6 +103,10 @@ export function createIssueService(db: Db) {
     async getAllRepresentatives() {
       return await db.select().from(representativesTable);
     },
+    
+    async getAllRepresentativesEmails() {
+      return await db.select({email: representativesTable.email}).from(representativesTable);
+    },
 
     async addRepresentative(formData: FormData) {
       const validatedFields = representativeSchema.safeParse({

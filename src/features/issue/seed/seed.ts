@@ -20,7 +20,7 @@ function simulateRepresentativeFormData() {
 }
 
 
-async function seedIssues() {
+export async function seedIssues() {
   const issues = Array.from({ length: 10 }).map(() => simulateIssueFormData());
   for (const issue of issues) {
     await issueService.createIssue(issue);
@@ -28,7 +28,7 @@ async function seedIssues() {
   console.log("Done seeding issues!");
 };
 
-async function seedRepresentatives() {
+export async function seedRepresentatives() {
   const representatives = Array.from({ length: 10 }).map(() => simulateRepresentativeFormData());
   for (const representative of representatives) {
     await issueService.addRepresentative(representative);
@@ -37,6 +37,3 @@ async function seedRepresentatives() {
 };
 
 
-
-seedIssues();
-seedRepresentatives();

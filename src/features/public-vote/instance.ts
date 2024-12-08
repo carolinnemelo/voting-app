@@ -3,4 +3,4 @@ import { createPublicVoteService } from "./service";
 import { issueService } from "../issue";
 
 
-export const publicVoteService = createPublicVoteService(db, issueService);
+export const publicVoteService = createPublicVoteService(db,  () => issueService.getAllRepresentativesEmails() );

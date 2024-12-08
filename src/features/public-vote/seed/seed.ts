@@ -1,15 +1,17 @@
 import { faker } from "@faker-js/faker";
+import { publicVoteService } from "../instance";
 
-function simulatePublicVoteFormData() {
+async function simulatePublicVoteFormData() {
+  const emails = await publicVoteService.getRepresentativesEmails();
+  const representativeSelected = faker.helpers.arrayElement(emails);
   const formData = new globalThis.FormData();
-  formData.append("representativeSelect", );
+  formData.append("representativeSelect",  representativeSelected.email);
   return formData;
 }
 
-async function seedIssues() {
-  const issues = Array.from({ length: 10 }).map(() => simulateIssueFormData());
-  for (const issue of issues) {
-    await issueService.createIssue(issue);
-  }
-  console.log("Done seeding issues!");
+export async function seedPublicVote() {
+  const formData = await simulatePublicVoteFormData();
+  await publicVoteService.savePublicVote(formData);
+  console.log("Done seeding Public vote!");
 };
+

@@ -1,9 +1,9 @@
 import { Db } from "@/db";
 import { publicVoteSchema } from "./zod-schema";
 import { publicVotesTable } from "./schema";
-import { IssueService } from "../issue";
 
-export function createPublicVoteService(db: Db, issueService: IssueService) {
+export function createPublicVoteService(db: Db, getAllRepresentativesEmails: () => Promise<{ email: string; }[]>
+) {
   return {
     async savePublicVote(formData: FormData) {
       const validatedFields = publicVoteSchema.safeParse({
@@ -18,6 +18,10 @@ export function createPublicVoteService(db: Db, issueService: IssueService) {
         email,
       });
       
+    },
+
+    async getRepresentativesEmails() {
+      return await getAllRepresentativesEmails();
     }
   };
 }
