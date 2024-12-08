@@ -10,10 +10,15 @@ function simulateIssueFormData() {
 }
 function simulateRepresentativeFormData() {
   const formData = new globalThis.FormData();
-  formData.append("representativeName", faker.person.fullName());
-  formData.append("email", faker.internet.email());
+  const firstName = faker.person.firstName();
+  const lastName = faker.person.lastName();
+  const representativeName = `${firstName} ${lastName}`;
+  const email = faker.internet.email({ firstName, lastName }).toLocaleLowerCase();
+  formData.append("representativeName", representativeName);
+  formData.append("email", email);
   return formData;
 }
+
 
 async function seedIssues() {
   const issues = Array.from({ length: 10 }).map(() => simulateIssueFormData());
