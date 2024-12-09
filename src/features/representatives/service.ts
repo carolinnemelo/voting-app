@@ -2,7 +2,6 @@ import { Db } from "@/db";
 import { publicVoteSchema, representativeSchema } from "./zod-schema";
 import { publicVotesTable, representativesTable } from "./schema";
 import { countPublicVotes } from "./logic";
-import { el } from "@faker-js/faker";
 
 export function createPublicVoteService(db: Db) {
   return {
