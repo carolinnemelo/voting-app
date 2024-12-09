@@ -1,2 +1,2 @@
 export * from "./issues";
-export * from "./public-vote";
+export * from "./representatives";
