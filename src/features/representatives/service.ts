@@ -2,6 +2,7 @@ import { Db } from "@/db";
 import { publicVoteSchema, representativeSchema } from "./zod-schema";
 import { publicVotesTable, representativesTable } from "./schema";
 import { countPublicVotes } from "./logic";
+import { el } from "@faker-js/faker";
 
 export function createPublicVoteService(db: Db) {
   return {
@@ -19,22 +20,28 @@ export function createPublicVoteService(db: Db) {
       });
     },
     async getPublicVotes() {
-     return await db.select().from(publicVotesTable);
-      // const votesPerRepresentative = countPublicVotes(publicVotes);
-      // const representatives = await this.getAllRepresentatives();
-      // const representativesNameAndVoteCount = representatives.map((representative) => {
-        
-
-        
-      // })
-
+      const publicVotes = await db.select().from(publicVotesTable);
+      const votesPerRepresentative = countPublicVotes(publicVotes);
+      const representatives = await this.getAllRepresentatives();
+      const representativesNameAndVoteCount = representatives.map(
+        (representative) => {
+          const vote = votesPerRepresentative.find((vote) => vote.email === representative.email);
+          return {
+            representativeName: representative.representativeName,
+            votesCount: vote ? vote.count : 0,
+          };
+        }
+      );
+      return representativesNameAndVoteCount;
     },
     async getAllRepresentatives() {
       return await db.select().from(representativesTable);
     },
-    
+
     async getAllRepresentativesEmails() {
-      return await db.select({email: representativesTable.email}).from(representativesTable);
+      return await db
+        .select({ email: representativesTable.email })
+        .from(representativesTable);
     },
 
     async addRepresentative(formData: FormData) {
@@ -42,7 +49,7 @@ export function createPublicVoteService(db: Db) {
         representativeName: formData.get("representativeName"),
         email: formData.get("email"),
       });
-    
+
       if (!validatedFields.success) {
         console.error(validatedFields.error.flatten().fieldErrors);
         return;
