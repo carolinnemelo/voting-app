@@ -4,5 +4,4 @@ export type Representative = {
   id: number;
   createdAt: Date;
   representativeName: string;
-  vote: number | null;
 };
