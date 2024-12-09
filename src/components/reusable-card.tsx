@@ -9,7 +9,7 @@ type Props = {
 export function ReusableCard({ cardTitle, children }: Props) {
   return (
     <>
-      <Card className="my-auto p-4 flex-grow">
+      <Card className="my-auto p-4 flex-grow max-w-full flex-wrap">
         <CardTitle className="mb-3">{cardTitle}</CardTitle>
         {children}</Card>
     </>
