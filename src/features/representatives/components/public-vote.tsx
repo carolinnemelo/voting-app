@@ -1,27 +1,12 @@
 import { representativesService } from "../instance";
-import { PublicVoteSelect } from "../schema";
+import { countPublicVotes } from "../logic";
 
 export async function PublicVote() {
   const publicVotes = await representativesService.getPublicVotes();
-
-  countPublicVotes(publicVotes);
+  const representativesVotes = countPublicVotes(publicVotes);
   return (
     <div>
-      <pre>{JSON.stringify(publicVotes, null, 2)}</pre>
+      <pre>{JSON.stringify(representativesVotes, null, 2)}</pre>
     </div>
   );
-}
-
-export function countPublicVotes(publicVotes: PublicVoteSelect[]) {
-  const emails = publicVotes.map((vote) => vote.email);
-  const countVotes = emails.reduce((acc, email) => {
-    if (!acc[email]) {
-      acc[email] = 1;
-    } else {
-      acc[email] = acc[email] + 1;
-    }
-    return acc;
-  }, {} as Record<string, number>);
-
-  console.log(countVotes);
 }
