@@ -6,6 +6,7 @@ export default async function Statistics() {
     <>
       <Main>
         <ReusableCard cardTitle="Statistics">
+          Hello
         </ReusableCard>
       </Main>
     </>

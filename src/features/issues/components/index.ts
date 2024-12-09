@@ -1,2 +1,2 @@
 export * from "./form-create-issue";
-export * from "./form-new-representative";
+export * from "../../representatives/components/form-new-representative";

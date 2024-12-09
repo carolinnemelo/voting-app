@@ -1,10 +1,10 @@
 import { ReusableCard } from "@/components";
 import { Main } from "@/components/main";
-import { issueService, FormPublicVote } from "@/features";
+import { FormPublicVote, representativesService } from "@/features";
 
 export default async function PublicVote() {
   const representatives =
-    await issueService.getAllRepresentatives();
+    await representativesService.getAllRepresentatives();
   return (
     <>
       <Main>

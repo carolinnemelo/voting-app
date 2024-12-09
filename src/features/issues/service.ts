@@ -1,11 +1,8 @@
 import { Db } from "@/db";
-import {
-  Issue,
-} from ".";
+import { Issue } from ".";
 import { eq } from "drizzle-orm";
-import { issueSchema, representativeSchema } from "./zod-schema";
-import { choicesTable, issuesTable, representativesTable } from "./schema";
-
+import { issueSchema } from "./zod-schema";
+import { choicesTable, issuesTable } from "./schema";
 
 export function createIssueService(db: Db) {
   return {
@@ -98,31 +95,6 @@ export function createIssueService(db: Db) {
           issueId: row[0].id,
         },
       ]);
-    },
-
-    async getAllRepresentatives() {
-      return await db.select().from(representativesTable);
-    },
-    
-    async getAllRepresentativesEmails() {
-      return await db.select({email: representativesTable.email}).from(representativesTable);
-    },
-
-    async addRepresentative(formData: FormData) {
-      const validatedFields = representativeSchema.safeParse({
-        representativeName: formData.get("representativeName"),
-        email: formData.get("email"),
-      });
-    
-      if (!validatedFields.success) {
-        console.error(validatedFields.error.flatten().fieldErrors);
-        return;
-      }
-      const { representativeName, email } = validatedFields.data;
-      await db.insert(representativesTable).values({
-        representativeName: representativeName,
-        email,
-      });
     },
   };
 }

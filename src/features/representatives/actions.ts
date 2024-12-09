@@ -1,8 +1,16 @@
 "use server";
 
-import { publicVoteService } from "./instance";
+import { revalidatePath } from "next/cache";
+import { representativesService } from "./instance";
+
+export async function createRepresentativeAction(formData: FormData) {
+  await representativesService.addRepresentative(formData);
+  revalidatePath("/");
+}
+
 
 export async function publicVoteAction(formData: FormData) {
-  return await publicVoteService.savePublicVote(formData);
-
+  await representativesService.savePublicVote(formData);
+  revalidatePath("/");
 }
+

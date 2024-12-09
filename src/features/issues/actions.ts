@@ -9,11 +9,6 @@ export async function createIssueAction(formData: FormData) {
 }
 
 
-export async function createRepresentativeAction(formData: FormData) {
-  await issueService.addRepresentative(formData);
-  revalidatePath("/new-representative");
-}
-
 export async function fetchChoicesByIssue(issueId: number) {
   return await issueService.getChoicesByIssueId(issueId);
 }

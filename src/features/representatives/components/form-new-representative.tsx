@@ -1,5 +1,6 @@
-import { createRepresentativeAction } from "../actions";
+
 import { Button, Input } from "@/components";
+import { createRepresentativeAction } from "../actions";
 
 export function FormNewRepresentative() {
   return (

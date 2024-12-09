@@ -1,6 +1,5 @@
 import { ReusableCard } from "@/components";
 import { Main } from "@/components/main";
-
 import { FormNewRepresentative } from "@/features";
 
 export default async function NewRepresentative() {
