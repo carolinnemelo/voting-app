@@ -17,7 +17,9 @@ export function createPublicVoteService(db: Db) {
         email,
       });
     },
-
+    async getPublicVotes() {
+      return await db.select().from(publicVotesTable);
+    },
     async getAllRepresentatives() {
       return await db.select().from(representativesTable);
     },

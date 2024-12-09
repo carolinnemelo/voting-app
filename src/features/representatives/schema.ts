@@ -13,3 +13,4 @@ export const publicVotesTable = pgTable("publicVotes", {
   createdAt: timestamp().defaultNow().notNull(),
 });
 
+export type PublicVoteSelect = typeof publicVotesTable.$inferSelect;
