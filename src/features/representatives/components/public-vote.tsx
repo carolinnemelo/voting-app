@@ -1,7 +1,7 @@
 import { representativesService } from "../instance";
 
 export async function PublicVote() {
-  const results = await representativesService.getPublicVotes();
+  const results = await representativesService.getVotesByRepresentative();
 
   return (
     <div>

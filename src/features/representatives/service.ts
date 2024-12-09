@@ -18,20 +18,22 @@ export function createPublicVoteService(db: Db) {
         email,
       });
     },
-    async getPublicVotes() {
+    async getVotesByRepresentative() {
       const publicVotes = await db.select().from(publicVotesTable);
-      const votesPerRepresentative = countPublicVotes(publicVotes);
+      const votesByRepresentativeEmail = countPublicVotes(publicVotes);
       const representatives = await this.getAllRepresentatives();
-      const representativesNameAndVoteCount = representatives.map(
+      const votesByRepresentative = representatives.map(
         (representative) => {
-          const vote = votesPerRepresentative.find((vote) => vote.email === representative.email);
+          const vote = votesByRepresentativeEmail.find(
+            (vote) => vote.email === representative.email
+          );
           return {
             representativeName: representative.representativeName,
             votesCount: vote ? vote.count : 0,
           };
         }
       );
-      return representativesNameAndVoteCount;
+      return votesByRepresentative;
     },
     async getAllRepresentatives() {
       return await db.select().from(representativesTable);
