@@ -1,6 +1,7 @@
 import { Db } from "@/db";
 import { publicVoteSchema, representativeSchema } from "./zod-schema";
 import { publicVotesTable, representativesTable } from "./schema";
+import { countPublicVotes } from "./logic";
 
 export function createPublicVoteService(db: Db) {
   return {
@@ -18,7 +19,15 @@ export function createPublicVoteService(db: Db) {
       });
     },
     async getPublicVotes() {
-      return await db.select().from(publicVotesTable);
+     return await db.select().from(publicVotesTable);
+      // const votesPerRepresentative = countPublicVotes(publicVotes);
+      // const representatives = await this.getAllRepresentatives();
+      // const representativesNameAndVoteCount = representatives.map((representative) => {
+        
+
+        
+      // })
+
     },
     async getAllRepresentatives() {
       return await db.select().from(representativesTable);

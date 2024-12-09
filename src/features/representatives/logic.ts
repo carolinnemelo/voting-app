@@ -10,5 +10,9 @@ export function countPublicVotes(publicVotes: PublicVoteSelect[]) {
     }
     return acc;
   }, {} as Record<string, number>);
-  return countVotes;
+  const result = Object.entries(countVotes).map(([email, count]) => ({
+    email,
+    count,
+  }));
+  return result;
 }
