@@ -1,2 +1,2 @@
-export * from "./issue"
-export * from "./public-vote"
+export * from "./issues";
+export * from "./public-vote";

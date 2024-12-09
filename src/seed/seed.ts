@@ -1,4 +1,4 @@
-import { seedIssues, seedRepresentatives } from "@/features/issue/seed/seed";
+import { seedIssues, seedRepresentatives } from "@/features/issues/seed/seed";
 import { seedPublicVote } from "@/features/public-vote/seed/seed";
 
 (async () => {
