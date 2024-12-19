@@ -1,12 +1,13 @@
-import { issueFeature } from "@/features";
+import { issueService } from "../instance";
 
 export async function DisplayIssues() {
-  const issues = await issueFeature.service.getAllIssuesAndChoices();
-  const [selectedIssue, setSelectedIssue] = useState("");
+  const issues = await issueService.getAll();
   return (
     <div>
       {issues.map((issue) => (
-        <IssueCard key={issue.id} issue={issue} />
+        <section key={issue.id}>
+          <p>{issue.issueName}</p>
+        </section>
       ))}
     </div>
   );
