@@ -6,7 +6,7 @@ export default async function Statistics() {
   return (
     <>
       <Main>
-        <ReusableCard cardTitle="Statistics">
+        <ReusableCard cardTitle="Representatives">
         <PublicVote />
         </ReusableCard>
       </Main>
