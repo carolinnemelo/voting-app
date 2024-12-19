@@ -1,7 +1,7 @@
 # Voting App
-## Planning
 An application where users can select representatives, create issues, and view statistics. Users can add representatives with a unique email address, and the app tracks how many votes each representative has received. Additionally, users can create issues, although voting on them is not yet supported. Below, you can find images of the original design plan created in Figma, showcasing the envisioned structure and user interface of the app. The project emphasizes simplicity, dynamic updates, and a responsive design for accessibility across devices.
-#### Design in Figma
+
+## Design in Figma
 ![Representative](public/1.jpeg)
 ![Public vote](public/2.jpeg)
 
