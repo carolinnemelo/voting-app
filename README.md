@@ -1,5 +1,10 @@
 # Voting App
 ## Planning
+
+#### Design in Figma
+![Representative](public/1.jpeg)
+![Public vote](public/2.jpeg)
+
 ### Features: 
 * **Add Representative**
   * Minimum of 1 representative
