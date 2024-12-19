@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { representativesService } from "./instance";
+import { redirect } from "next/navigation";
 
 export async function createRepresentativeAction(formData: FormData) {
   await representativesService.addRepresentative(formData);
@@ -11,6 +12,6 @@ export async function createRepresentativeAction(formData: FormData) {
 
 export async function publicVoteAction(formData: FormData) {
   await representativesService.savePublicVote(formData);
-  revalidatePath("/");
+  redirect("/vote/statistics");
 }
 
