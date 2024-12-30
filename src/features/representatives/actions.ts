@@ -9,7 +9,6 @@ export async function createRepresentativeAction(formData: FormData) {
   revalidatePath("/");
 }
 
-
 export async function publicVoteAction(formData: FormData) {
   await representativesService.savePublicVote(formData);
   redirect("/vote/statistics");
