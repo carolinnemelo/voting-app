@@ -1,3 +1,4 @@
+import { representativesService } from "@/features/representatives";
 import { issueService } from "../instance";
 import { faker } from "@faker-js/faker";
 
@@ -31,7 +32,7 @@ export async function seedIssues() {
 export async function seedRepresentatives() {
   const representatives = Array.from({ length: 10 }).map(() => simulateRepresentativeFormData());
   for (const representative of representatives) {
-    await issueService.addRepresentative(representative);
+    await representativesService.addRepresentative(representative);
   }
   console.log("Done seeding representatives!");
 };
