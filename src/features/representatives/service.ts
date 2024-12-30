@@ -3,7 +3,7 @@ import { publicVoteSchema, representativeSchema } from "./zod-schema";
 import { publicVotesTable, representativesTable } from "./schema";
 import { countPublicVotes } from "./logic";
 
-export function createPublicVoteService(db: Db) {
+export function createRepresentativeService(db: Db) {
   return {
     async savePublicVote(formData: FormData) {
       const validatedFields = publicVoteSchema.safeParse({
@@ -18,23 +18,23 @@ export function createPublicVoteService(db: Db) {
         email,
       });
     },
+    
     async getVotesByRepresentative() {
       const publicVotes = await db.select().from(publicVotesTable);
       const votesByRepresentativeEmail = countPublicVotes(publicVotes);
       const representatives = await this.getAllRepresentatives();
-      const votesByRepresentative = representatives.map(
-        (representative) => {
-          const vote = votesByRepresentativeEmail.find(
-            (vote) => vote.email === representative.email
-          );
-          return {
-            representativeName: representative.representativeName,
-            votesCount: vote ? vote.count : 0,
-          };
-        }
-      );
+      const votesByRepresentative = representatives.map((representative) => {
+        const vote = votesByRepresentativeEmail.find(
+          (vote) => vote.email === representative.email
+        );
+        return {
+          representativeName: representative.representativeName,
+          votesCount: vote ? vote.count : 0,
+        };
+      });
       return votesByRepresentative;
     },
+
     async getAllRepresentatives() {
       return await db.select().from(representativesTable);
     },
