@@ -8,7 +8,6 @@ export async function createIssueAction(formData: FormData) {
   revalidatePath("/issue");
 }
 
-
 export async function fetchChoicesByIssue(issueId: number) {
   return await issueService.getChoicesByIssueId(issueId);
 }
