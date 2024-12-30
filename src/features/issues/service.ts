@@ -1,8 +1,8 @@
 import { Db } from "@/db";
-import { Issue } from ".";
 import { eq } from "drizzle-orm";
 import { issueSchema } from "./zod-schema";
 import { choicesTable, issuesTable } from "./schema";
+import { Issue } from "./types";
 
 export function createIssueService(db: Db) {
   return {
