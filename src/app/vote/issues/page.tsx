@@ -1,6 +1,5 @@
-import { ReusableCard } from "@/components";
-import { Main } from "@/components/main";
-import { DisplayIssues } from "@/features/issues/components/display-issues";
+import { ReusableCard, Main } from "@/components";
+import { DisplayIssues } from "@/features";
 
 export default function Page() {
   return (

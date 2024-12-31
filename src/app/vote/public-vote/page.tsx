@@ -1,5 +1,4 @@
-import { ReusableCard } from "@/components";
-import { Main } from "@/components/main";
+import { ReusableCard, Main } from "@/components";
 import { FormPublicVote, representativesService } from "@/features";
 
 export default async function PublicVote() {
