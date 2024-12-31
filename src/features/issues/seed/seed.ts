@@ -1,4 +1,4 @@
-import { representativesService } from "@/features/representatives";
+import { representativesService } from "@/features";
 import { issueService } from "../instance";
 import { faker } from "@faker-js/faker";
 
