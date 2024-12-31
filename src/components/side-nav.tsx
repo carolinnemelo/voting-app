@@ -9,7 +9,7 @@ import {
 
 export function SideNav() {
   return (
-    <NavigationMenu className="mt-12 flex items-start bg-background shadow-lg md:hidden">
+    <NavigationMenu className="mt-12 flex items-start bg-background shadow-lg md:hidden absolute">
       <NavigationMenuList className="flex flex-col items-start">
         <NavigationMenuItem className="ml-1">
           <Link href="/" legacyBehavior passHref>
