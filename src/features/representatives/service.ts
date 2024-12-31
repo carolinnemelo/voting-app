@@ -1,24 +1,25 @@
 import { Db } from "@/db";
-import { publicVoteSchema, representativeSchema } from "./zod-schema";
 import { publicVotesTable, representativesTable } from "./schema";
-import { countPublicVotes } from "./logic";
+import {
+  countPublicVotes,
+  validatePublicVoteFields,
+  validateRepresentativeFields,
+} from "./logic";
 
 export function createRepresentativeService(db: Db) {
   return {
     async savePublicVote(formData: FormData) {
-      const validatedFields = publicVoteSchema.safeParse({
-        email: formData.get("representativeSelect"),
-      });
-      if (!validatedFields.success) {
+      const validatedFields = validatePublicVoteFields(formData);
+      if (!validatedFields) {
+        console.error("Invalid fields");
         return;
       }
 
-      const { email } = validatedFields.data;
       await db.insert(publicVotesTable).values({
-        email,
+        email: validatedFields.email,
       });
     },
-    
+
     async getVotesByRepresentative() {
       const publicVotes = await db.select().from(publicVotesTable);
       const votesByRepresentativeEmail = countPublicVotes(publicVotes);
@@ -46,19 +47,15 @@ export function createRepresentativeService(db: Db) {
     },
 
     async addRepresentative(formData: FormData) {
-      const validatedFields = representativeSchema.safeParse({
-        representativeName: formData.get("representativeName"),
-        email: formData.get("email"),
-      });
-
-      if (!validatedFields.success) {
-        console.error(validatedFields.error.flatten().fieldErrors);
+      const validatedFields = validateRepresentativeFields(formData);
+      if (!validatedFields) {
+        console.error("Invalid fields");
         return;
       }
-      const { representativeName, email } = validatedFields.data;
+
       await db.insert(representativesTable).values({
-        representativeName: representativeName,
-        email,
+        representativeName: validatedFields.representativeName,
+        email: validatedFields.email,
       });
     },
   };
