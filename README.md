@@ -1,59 +1,73 @@
 # Voting App
+
 An application where users can select representatives, create issues, and view statistics. Users can add representatives with a unique email address, and the app tracks how many votes each representative has received. Additionally, users can create issues, although voting on them is not yet supported. Below, you can find images of the original design plan created in Figma, showcasing the envisioned structure and user interface of the app. The project emphasizes simplicity, dynamic updates, and a responsive design for accessibility across devices.
 
+---
+
 ## Design in Figma
-![Representative](public/1.jpeg)
+
+![Representative](public/1.jpeg)  
 ![Public vote](public/2.jpeg)
 
-### Features: 
-* **Add Representative**
-  * Minimum of 1 representative
-  * Input name
-  * Input email
-<br>
+---
 
-* **Create Election**
-  * Input election name
-  * Minimum of 2 choices
-<br>
+## Features
 
-* **Create Public Vote and Vote**
-  * Input Name 
-  * List of representatives
-  * Vote on representative 
-  * List of ongoing elections
-  * Indicate preferences in ongoing elections 
-<br>
+### **Add Representative**
+- Minimum of 1 representative
+- Input name
+- Input email
 
-* **Representative Voting**
-  * Number of public votes 
-  * Public votes' preferences percentage per election
-  * List of ongoing elections
-  * Vote on a choice
-<br>
+### **Create Election**
+- Input election name
+- 2 choices
 
-* **Count Votes**
-  * Calculate winner
-  * Calculate public votes preferences percentages
-  * Compute representative's votes
-  * Calculate agreement rate
-<br>
+### **Create Public Vote and Vote**
+- Input name  
+- List of representatives  
+- Vote on representative  
+
+### **Count Votes**
+- Compute representative's votes  
+
+---
+
+## Prerequisites
+Make sure you have the following installed:
+- [Docker](https://www.docker.com/)
+- [Node.js](https://nodejs.org/) (version 16 or later)
+
+---
+
+## How to Run the Program
+
+#### 🐳 Step 1: Start Docker
+```bash
+docker-compose up
+```
+
+#### 🔧 Step 2: Install Dependencies
+```bash
+npm install
+```
 
 
-## Tables
+#### 🚀 Step 3: Apply the Migrations
+```bash
+npx drizzle-kit push
+```
 
-* Election
-Id | Created | Ended 
-<br>
+#### 🌱 Step 4: Run the Seed Script
+```bash
+npm run seed
+```
 
-* Public Votes
-Id | Name | Preference | Vote (Representative_Id) 
-<br>
+#### 🛠️ Step 5: Build the Project
+```bash
+npm run build
+```
 
-* Representatives
-Id | Name | Email | Vote (Choice_Id) 
-<br>
-
-* Choices
-Id | Name |  Election_Id 
-<br>
+#### ▶️ Step 6: Start the Program
+```bash
+npm start
+```
